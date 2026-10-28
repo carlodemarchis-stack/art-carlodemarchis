@@ -58,10 +58,10 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .hero{background:#000;color:#fff;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);padding:clamp(40px,7vw,96px) var(--gut);align-items:center;position:relative;overflow:hidden;isolation:isolate}
 .hero-bg{display:none}
 @media (orientation:landscape) and (min-width:861px){
-  .hero.has-bg{min-height:min(92vh,980px)}
+  .hero.has-bg{min-height:0;padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(40px,6vw,72px)}
   .hero-bg{display:block;position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;object-position:50% 40%;z-index:-2;
-    transform:scale(1.9);transform-origin:52% 45%;image-rendering:pixelated;filter:grayscale(1) brightness(.6) contrast(1.3) saturate(0)}
-  .hero.has-bg::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 55%,rgba(0,0,0,.35) 100%),radial-gradient(120% 90% at 50% 50%,rgba(0,0,0,0) 45%,rgba(0,0,0,.55) 100%)}
+    transform:scale(1.9);transform-origin:52% 45%;image-rendering:pixelated;filter:grayscale(1) brightness(.95) contrast(1.2) saturate(0)}
+  .hero.has-bg::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.05) 50%,rgba(0,0,0,.2) 100%)}
   .hero.has-bg .wordmark-xl,.hero.has-bg .hero-tag{text-shadow:0 2px 24px rgba(0,0,0,.6)}
   .hero.has-bg .hero-sub{color:#d6d6d6}
   .hero.has-bg .tile{box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
