@@ -17,7 +17,7 @@
   {% if project.hero %}
   <figure class="phero">
     <a href="{{ project.hero.url }}" data-lightbox="{{ project.slug }}" data-caption="{{ project.hero.caption }}">
-      <img src="{{ project.hero.url }}" width="{{ project.hero.w }}" height="{{ project.hero.h }}" alt="{{ project.hero.caption or (project.title|plain) }}">
+      {{ img(project.hero, '100vw', project.hero.caption or (project.title|plain), eager=True) }}
     </a>
     {% if project.hero.caption %}<figcaption>{{ project.hero.caption }}</figcaption>{% endif %}
   </figure>
@@ -45,7 +45,7 @@
   <section class="gallery">
     {% for im in project.gallery %}{% if im != project.hero %}
     <a class="g-item" href="{{ im.url }}" data-lightbox="{{ project.slug }}" data-caption="{{ im.caption }}" style="--ar:{{ im.w }}/{{ im.h }}">
-      <img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="{{ im.caption or (project.title|plain) }}" loading="lazy">
+      {{ img(im, '(max-width:560px) 100vw, (max-width:980px) 50vw, 440px', im.caption or (project.title|plain)) }}
     </a>
     {% endif %}{% endfor %}
   </section>

@@ -8,7 +8,7 @@
   <div class="pgrid">
     {% for p in series %}
     <a class="pcard {{ 'color' if p.palette == 'color' else 'bw' }}" href="/projects/{{ p.slug }}/">
-      {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="" loading="lazy">{% endif %}
+      {{ img(p.cover, '(max-width:640px) 100vw, 360px') }}
       <span class="pcard-t">{{ p.title|redact }}</span>
       <span class="pcard-m">{{ p.year }}{% if p.palette == 'color' %} · colour{% endif %}{% if p.status == 'wip' %} · work in progress{% endif %}</span>
     </a>
@@ -19,7 +19,7 @@
   <div class="pgrid">
     {% for p in specials %}
     <a class="pcard" href="/projects/{{ p.slug }}/">
-      {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="" loading="lazy">{% endif %}
+      {{ img(p.cover, '(max-width:640px) 100vw, 360px') }}
       <span class="pcard-t">{{ p.title|redact }}</span>
       <span class="pcard-m">{{ p.subtitle }}{% if p.year %} · {{ p.year }}{% endif %}</span>
     </a>

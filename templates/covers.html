@@ -12,7 +12,7 @@
     {% for a in albums if a.artist == artist %}
     <article class="ccard" id="{{ a.slug }}">
       <a href="{{ a.cover.url }}" data-lightbox="covers-{{ a.slug }}" data-caption="{{ a.artist }} — {{ a.title }}{% if a.year %} ({{ a.year }}){% endif %}">
-        <img src="{{ a.cover.thumb }}" width="{{ a.cover.w }}" height="{{ a.cover.h }}" alt="{{ a.artist }} — {{ a.title }}" loading="lazy">
+        {{ img(a.cover, '(max-width:640px) 50vw, 240px', a.artist ~ ' — ' ~ a.title) }}
       </a>
       <span class="ccard-t">{{ a.title }}</span>
       <span class="ccard-m">{{ a.kind }}{% if a.year %} · {{ a.year }}{% endif %}{% if a.listen_url %} · <a href="{{ a.listen_url }}" rel="noopener">listen ↗</a>{% endif %}</span>

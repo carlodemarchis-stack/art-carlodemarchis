@@ -8,7 +8,7 @@
     {% for b in books %}
     <article class="book" id="{{ b.slug }}">
       <div class="book-cover">
-        {% if b.cover %}<a href="{{ b.cover.url }}" data-lightbox="book-{{ b.slug }}"><img src="{{ b.cover.thumb }}" width="{{ b.cover.w }}" height="{{ b.cover.h }}" alt="{{ b.title|plain }} — cover" loading="lazy"></a>{% endif %}
+        {% if b.cover %}<a href="{{ b.cover.url }}" data-lightbox="book-{{ b.slug }}">{{ img(b.cover, '(max-width:700px) 100vw, 420px', (b.title|plain) ~ ' — cover') }}</a>{% endif %}
       </div>
       <div class="book-text">
         <div class="meta"><span>{{ b.year }}</span>{% if b.format %}<span>{{ b.format }}</span>{% endif %}{% if b.pages %}<span>{{ b.pages }} pages</span>{% endif %}{% if b.isbn %}<span>{{ b.isbn }}</span>{% endif %}</div>
@@ -24,7 +24,7 @@
         </div>
         {% if b.gallery|length > 1 %}
         <div class="book-pages">
-          {% for im in b.gallery %}{% if im != b.cover %}<a href="{{ im.url }}" data-lightbox="book-{{ b.slug }}" data-caption="{{ im.caption }}"><img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="lazy"></a>{% endif %}{% endfor %}
+          {% for im in b.gallery %}{% if im != b.cover %}<a href="{{ im.url }}" data-lightbox="book-{{ b.slug }}" data-caption="{{ im.caption }}">{{ img(im, '120px') }}</a>{% endif %}{% endfor %}
         </div>
         {% endif %}
       </div>

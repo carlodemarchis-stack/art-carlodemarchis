@@ -25,7 +25,7 @@ import studio  # noqa: E402
 
 DOCS = os.path.join(ROOT, "docs")
 IMG = os.path.join(DOCS, "img")
-LARGE, THUMB = 2000, 900
+LARGE, THUMB, SMALL = 2000, 900, 480
 QUALITY = "82"
 NO_IMAGES = "--no-images" in sys.argv
 
@@ -61,25 +61,27 @@ def process_images(images):
             continue
         key = f"{im['id']}-{hashlib.sha1(src.encode()).hexdigest()[:6]}"
         folder = os.path.join(IMG, im["owner_type"])
-        large, thumb = os.path.join(folder, key + ".jpg"), os.path.join(folder, key + "-s.jpg")
+        large, thumb, small = os.path.join(folder, key + ".jpg"), os.path.join(folder, key + "-s.jpg"), os.path.join(folder, key + "-xs.jpg")
         if not NO_IMAGES:
             made += derive(src, large, LARGE)
             derive(src, thumb, THUMB)
+            derive(src, small, SMALL)
         if not os.path.exists(large):
             im["missing"] = True
             continue
         im["w"], im["h"] = sips_dims(large)
         im["url"] = f"/img/{im['owner_type']}/{key}.jpg"
         im["thumb"] = f"/img/{im['owner_type']}/{key}-s.jpg"
+        im["small"] = f"/img/{im['owner_type']}/{key}-xs.jpg"
         im["name"] = os.path.basename(src)
-        keep.update({large, thumb})
+        keep.update({large, thumb, small})
     if not NO_IMAGES:
         for dp, _, fn in os.walk(IMG):
             for f in fn:
                 full = os.path.join(dp, f)
                 if full not in keep:
                     os.remove(full)
-    print(f"  images: {len(keep)//2} in use, {made} newly resized")
+    print(f"  images: {len(keep)//3} in use, {made} newly resized")
 
 
 # ---------------------------------------------------------------- text helpers
@@ -155,6 +157,17 @@ def bar_when(start, time_text):
         return time_text
     out = f"{d.strftime('%A')} {d.day} {MONTHS[d.month]}"
     return f"{out}, {time_text}" if time_text else out
+
+
+def img(im, sizes, alt="", eager=False, cls=""):
+    """<img> with srcset (480 / 900 / 2000 px): the browser picks the smallest file that fills `sizes`."""
+    if not im:
+        return ""
+    return Markup(
+        f'<img{" class=" + chr(34) + cls + chr(34) if cls else ""} src="{im["thumb"]}" '
+        f'srcset="{im["small"]} 480w, {im["thumb"]} 900w, {im["url"]} 2000w" sizes="{sizes}" '
+        f'width="{im["w"]}" height="{im["h"]}" alt="{html.escape(str(alt))}" '
+        f'loading="{"eager" if eager else "lazy"}" decoding="async">')
 
 
 def plain(s):
@@ -233,6 +246,7 @@ def main():
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")),
                       autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
     env.filters.update(redact=redact, md=md, plain=plain)
+    env.globals["img"] = img
     base = s.get("base_url", "").rstrip("/")
     ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, hero_bg=hero_bg, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists,
                portrait=portrait, year=date.today().year, bio=md(s.get("bio", "")))

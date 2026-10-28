@@ -22,7 +22,7 @@
       </div>
       {% if e.images %}
       <div class="event-imgs">
-        {% for im in e.images %}<a href="{{ im.url }}" data-lightbox="ev-{{ e.slug }}" data-caption="{{ im.caption }}" style="--ar:{{ im.w }}/{{ im.h }}"><img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="{{ im.caption or e.title }}" loading="lazy"></a>{% endfor %}
+        {% for im in e.images %}<a href="{{ im.url }}" data-lightbox="ev-{{ e.slug }}" data-caption="{{ im.caption }}" style="--ar:{{ im.w }}/{{ im.h }}">{{ img(im, '(max-width:760px) 100vw, 40vw', im.caption or e.title) }}</a>{% endfor %}
       </div>
       {% endif %}
     </article>
