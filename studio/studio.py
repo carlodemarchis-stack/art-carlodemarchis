@@ -62,7 +62,7 @@ DEFAULT_SETTINGS = {
     "spotify_playlist": "",   # Spotify embed URL (open.spotify.com/embed/...), shown at the bottom of the covers page
     "prints_note": "Available as museum-quality fine art paper prints, editions of 10, in different sizes, on request.",  # shown on every series page; empty = hidden
     "umami_website_id": "",  # leave empty for no analytics
-    "umami_src": "https://m.aguywithascarf.com/script.js",
+    "umami_src": "https://m.aguywithascarf.com/k.js",
     "source_root": os.path.expanduser("~/Documents/_cdm/_carlo/Art"),
 }
 

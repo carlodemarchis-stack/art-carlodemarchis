@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Photobooks — {{ site.site_name }}{% endblock %}
+{% block canon %}{{ base }}/photobooks/{% endblock %}
 {% block content %}
 <section class="section">
   <div class="section-head"><h1 class="h-page">Photobooks</h1><span class="count">{{ books|length }}</span></div>

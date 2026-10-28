@@ -2,6 +2,7 @@
 {% block title %}Album covers — {{ site.site_name }}{% endblock %}
 {% block desc %}Cover art for the music released as {{ artists|join(', ') }}.{% endblock %}
 {% block og %}{% if albums %}<meta property="og:image" content="{{ base }}{{ albums[0].cover.og }}">{% endif %}{% endblock %}
+{% block canon %}{{ base }}/covers/{% endblock %}
 {% block content %}
 <section class="section">
   <div class="section-head"><h1 class="h-page">Album covers</h1><span class="count">{{ albums|length }}</span></div>

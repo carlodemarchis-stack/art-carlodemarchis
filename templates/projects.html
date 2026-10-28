@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Projects — {{ site.site_name }}{% endblock %}
+{% block canon %}{{ base }}/projects/{% endblock %}
 {% block content %}
 {% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
 {% set series = projects|rejectattr('kind', 'equalto', 'commission')|list %}
