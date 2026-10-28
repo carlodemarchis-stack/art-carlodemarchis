@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.site_name }} — {{ site.tagline }}{% endblock %}</title>
+<meta name="description" content="{% block desc %}{{ site.artist_name }} — {{ site.tagline }}. AI-generated black and white photography for storytelling and social provocation. Projects, photobooks and exhibitions.{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.site_name }}">
+<meta property="og:title" content="{{ self.title()|plain }}">
+<meta property="og:description" content="{{ self.desc() }}">
+{% block og %}{% if hero %}<meta property="og:image" content="{{ base }}{{ hero[0].url }}">{% endif %}{% endblock %}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=1">
+{% if site.umami_website_id %}
+<!-- Umami -->
+<script>if(location.search.indexOf('noumami')>-1){try{localStorage.setItem('umami.disabled','1')}catch(e){}}</script>
+<script defer src="{{ site.umami_src }}" data-website-id="{{ site.umami_website_id }}"></script>
+<!-- /Umami -->
+{% endif %}
+</head>
+<body class="page-{{ page }}">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="/"><span class="wordmark">{{ site.site_name }}</span><span class="tag">{{ site.tagline }}</span></a>
+  <nav class="nav" aria-label="Main">
+    <a href="/projects/" {% if page == 'projects' %}aria-current="page"{% endif %}>Projects</a>
+    <a href="/photobooks/" {% if page == 'books' %}aria-current="page"{% endif %}>Photobooks</a>
+    <a href="/exhibitions/" {% if page == 'events' %}aria-current="page"{% endif %}>Exhibitions</a>
+    <a href="/about/" {% if page == 'about' %}aria-current="page"{% endif %}>About</a>
+  </nav>
+</header>
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">
+  <div class="foot-grid">
+    <div><span class="wordmark">{{ site.site_name }}</span><br><span class="tag">{{ site.tagline }}</span></div>
+    <div class="foot-links">
+      {% if site.instagram %}<a href="{{ site.instagram }}" rel="me noopener">Instagram</a>{% endif %}
+      {% if site.medium %}<a href="{{ site.medium }}" rel="me noopener">Medium</a>{% endif %}
+      {% if site.linkedin %}<a href="{{ site.linkedin }}" rel="me noopener">LinkedIn</a>{% endif %}
+      {% if site.email %}<a href="mailto:{{ site.email }}">Email</a>{% endif %}
+    </div>
+    <div class="foot-copy">© {{ year }} {{ site.artist_name }}{% if site.city %} · {{ site.city }}{% endif %}<br>All images are AI-generated unless stated otherwise.</div>
+  </div>
+</footer>
+<div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Image viewer">
+  <button class="lb-close" aria-label="Close">×</button>
+  <button class="lb-prev" aria-label="Previous">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="lb-next" aria-label="Next">›</button>
+</div>
+<script src="/site.js?v=1" defer></script>
+</body>
+</html>

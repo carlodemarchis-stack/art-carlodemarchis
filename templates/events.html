@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Exhibitions — {{ site.site_name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="section-head"><h1 class="h-page">Exhibitions & events</h1><span class="count">{{ events|length }}</span></div>
+  {% set upcoming = events|selectattr('status', 'equalto', 'upcoming')|list %}
+  {% set past = events|selectattr('status', 'equalto', 'past')|list %}
+  {% for group, label in [(upcoming, 'Upcoming'), (past, 'Past')] %}{% if group %}
+  <h2 class="h-group">{{ label }}</h2>
+  <div class="evlist">
+    {% for e in group %}
+    <article class="event" id="{{ e.slug }}">
+      <div class="event-text">
+        <div class="meta"><span>{{ e.when }}</span><span>{{ e.kind.replace('_', ' ') }}</span></div>
+        <h3>{{ e.title }}</h3>
+        <p class="where">{{ e.venue }}{% if e.venue and e.city %} — {% endif %}{{ e.city }}</p>
+        {% if e.description %}<div class="event-desc">{{ e.description|md }}</div>{% endif %}
+        <div class="book-actions">
+          {% for p in e.projects %}<a class="btn ghost" href="/projects/{{ p.slug }}/">{{ p.title|redact }}</a>{% endfor %}
+          {% if e.url %}<a class="btn ghost" href="{{ e.url }}" rel="noopener">Event page ↗</a>{% endif %}
+        </div>
+      </div>
+      {% if e.images %}
+      <div class="event-imgs">
+        {% for im in e.images %}<a href="{{ im.url }}" data-lightbox="ev-{{ e.slug }}" data-caption="{{ im.caption }}" style="--ar:{{ im.w }}/{{ im.h }}"><img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="{{ im.caption or e.title }}" loading="lazy"></a>{% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}{% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+# working database + preview cache stay local; content.json is the tracked snapshot
+studio/studio.db
+studio/studio.db-journal
+studio/cache/
+# hi-res sources (copied out of the 2025 Keynote) — too big for the repo
+sources/
+.DS_Store
+__pycache__/

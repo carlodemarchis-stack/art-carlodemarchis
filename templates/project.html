@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ project.title|plain }} — {{ site.site_name }}{% endblock %}
+{% block desc %}{{ project.excerpt or (project.title|plain) }}{% endblock %}
+{% block og %}{% if project.cover %}<meta property="og:image" content="{{ base }}{{ project.cover.url }}">{% endif %}{% endblock %}
+{% block content %}
+<article class="project {{ 'color' if project.palette == 'color' else 'bw' }}">
+  <header class="phead">
+    <div class="meta">
+      <a href="/projects/">Projects</a><span>{{ project.year }}</span><span>{{ project.kind.replace('_', ' ') }}</span>
+      <span>{{ 'colour' if project.palette == 'color' else 'black & white' }}</span>
+      {% if project.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}
+    </div>
+    <h1 class="h-title">{{ project.title|redact }}</h1>
+    {% if project.subtitle %}<p class="subtitle">{{ project.subtitle }}</p>{% endif %}
+  </header>
+
+  {% if project.cover %}
+  <figure class="phero">
+    <a href="{{ project.cover.url }}" data-lightbox="{{ project.slug }}" data-caption="{{ project.cover.caption }}">
+      <img src="{{ project.cover.url }}" width="{{ project.cover.w }}" height="{{ project.cover.h }}" alt="{{ project.cover.caption or (project.title|plain) }}">
+    </a>
+    {% if project.cover.caption %}<figcaption>{{ project.cover.caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  {% if project.statement %}
+  <div class="statement">{{ project.statement|md }}</div>
+  {% elif project.status == 'wip' %}
+  <div class="statement"><p class="muted">Work in progress — statement to follow.</p></div>
+  {% endif %}
+
+  {% if project.links or project.books or project.events %}
+  <aside class="plinks">
+    {% for l in project.links %}<a class="btn" href="{{ l.url }}" rel="noopener">{{ l.label }} ↗</a>{% endfor %}
+    {% for b in project.books %}<a class="btn" href="/photobooks/#{{ b.slug }}">Photobook{% if b.status == 'coming' %} (coming soon){% endif %}</a>{% endfor %}
+    {% for e in project.events %}<a class="btn ghost" href="/exhibitions/#{{ e.slug }}">{{ e.title }} · {{ e.when }}</a>{% endfor %}
+  </aside>
+  {% endif %}
+
+  {% if project.gallery and (project.gallery|length > 1 or project.gallery[0] != project.cover) %}
+  <section class="gallery">
+    {% for im in project.gallery %}{% if im != project.cover %}
+    <a class="g-item" href="{{ im.url }}" data-lightbox="{{ project.slug }}" data-caption="{{ im.caption }}" style="--ar:{{ im.w }}/{{ im.h }}">
+      <img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="{{ im.caption or (project.title|plain) }}" loading="lazy">
+    </a>
+    {% endif %}{% endfor %}
+  </section>
+  {% endif %}
+
+  <nav class="pnav" aria-label="More projects">
+    {% if prev %}<a class="pn prev" href="/projects/{{ prev.slug }}/"><span>Previous</span>{{ prev.title|redact }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="pn next" href="/projects/{{ next.slug }}/"><span>Next</span>{{ next.title|redact }}</a>{% endif %}
+  </nav>
+</article>
+{% endblock %}

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>carlodemarchis studio</title>
+<style>
+:root{--ink:#111;--mute:#777;--line:#e4e4e4;--bg:#fafafa;--acc:#000;--ok:#1a7f37;--warn:#b45309;--bad:#b91c1c}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.45 -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit}
+header{display:flex;align-items:center;gap:18px;padding:10px 18px;background:#000;color:#fff;position:sticky;top:0;z-index:5}
+header b{font-size:17px;letter-spacing:-.02em}
+header nav a{color:#bbb;text-decoration:none;margin-right:14px;padding:4px 0}
+header nav a.on{color:#fff;border-bottom:2px solid #fff}
+header .sp{flex:1}
+button{font:inherit;border:1px solid #222;background:#fff;color:#000;padding:6px 12px;border-radius:4px;cursor:pointer}
+button.pri{background:#000;color:#fff}
+button.sm{padding:2px 8px;font-size:12px}
+button.danger{border-color:var(--bad);color:var(--bad)}
+main{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 46px)}
+#list{border-right:1px solid var(--line);background:#fff;overflow:auto}
+#list .row{padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:10px;align-items:center}
+#list .row.on{background:#f0f0f0}
+#list .row img{width:48px;height:48px;object-fit:cover;background:#ddd;flex:none}
+#list .row .t{font-weight:600}
+#list .row .m{color:var(--mute);font-size:12px}
+#list .tools{padding:10px 14px;display:flex;gap:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+#edit{padding:18px 24px 60px;overflow:auto}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:10px;background:#eee;text-transform:uppercase;letter-spacing:.04em}
+.pill.published,.pill.available,.pill.past{background:#dcfce7;color:var(--ok)}
+.pill.wip,.pill.upcoming,.pill.coming{background:#fef3c7;color:var(--warn)}
+.pill.draft,.pill.planned{background:#eee;color:#555}
+form .f{display:grid;grid-template-columns:140px 1fr;gap:8px 14px;align-items:start;margin-bottom:8px}
+form label{color:var(--mute);padding-top:7px}
+input,textarea,select{font:inherit;width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:4px;background:#fff}
+textarea{min-height:90px;resize:vertical}
+textarea.big{min-height:260px;font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.bar{display:flex;gap:8px;align-items:center;margin:14px 0}
+.bar .sp{flex:1}
+h2{margin:0 0 12px;font-size:20px;letter-spacing:-.02em}
+h3{margin:28px 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.imgs .im{border:1px solid var(--line);background:#fff;border-radius:4px;overflow:hidden;font-size:12px}
+.imgs .im img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#eee}
+.imgs .im .c{padding:6px}
+.imgs .im .c input{font-size:12px;padding:3px 5px;margin-top:4px}
+.imgs .im.cover{outline:3px solid #000}
+.imgs .im .ops{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px}
+.note{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+.note.done{opacity:.5;text-decoration:line-through}
+.note time{color:var(--mute);font-size:12px;white-space:nowrap}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:9}
+#modal .box{background:#fff;width:min(1100px,94vw);height:88vh;border-radius:6px;display:flex;flex-direction:column;overflow:hidden}
+#modal .hd{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:center;font-size:13px}
+#modal .hd code{background:#f3f3f3;padding:2px 6px;border-radius:3px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#modal .bd{display:grid;grid-template-columns:260px 1fr;flex:1;overflow:hidden}
+#modal .dirs{overflow:auto;border-right:1px solid var(--line)}
+#modal .dirs div{padding:6px 12px;cursor:pointer;border-bottom:1px solid #f0f0f0}
+#modal .dirs div:hover{background:#f4f4f4}
+#modal .files{overflow:auto;padding:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;align-content:start}
+#modal .files .fi{cursor:pointer;border:2px solid transparent;border-radius:4px;font-size:11px;word-break:break-all}
+#modal .files .fi.sel{border-color:#000}
+#modal .files .fi img{width:100%;aspect-ratio:1;object-fit:cover;background:#eee;display:block}
+#log{white-space:pre-wrap;font:12px/1.4 ui-monospace,Menlo,monospace;background:#111;color:#ddd;padding:12px;border-radius:4px;max-height:50vh;overflow:auto}
+.hint{color:var(--mute);font-size:12px}
+.empty{padding:40px;color:var(--mute)}
+</style>
+</head>
+<body>
+<header>
+  <b>carlodemarchis <span style="color:#888;font-weight:400">studio</span></b>
+  <nav>
+    <a href="#projects">Projects</a><a href="#books">Photobooks</a><a href="#events">Events</a><a href="#site">Site & settings</a>
+  </nav>
+  <span class="sp"></span>
+  <a href="/site/" target="_blank" style="color:#bbb;text-decoration:none;margin-right:14px">Preview site ↗</a>
+  <button class="pri" id="buildBtn" onclick="build()">Build site</button>
+</header>
+<main>
+  <aside id="list"></aside>
+  <section id="edit"><div class="empty">Select or create a record.</div></section>
+</main>
+
+<div id="modal"><div class="box">
+  <div class="hd"><button class="sm" onclick="browseUp()">↑ up</button><code id="mDir"></code>
+    <span class="hint" id="mSel"></span>
+    <button class="sm pri" onclick="pickDone()">Add selected</button><button class="sm" onclick="closeModal()">Cancel</button></div>
+  <div class="bd"><div class="dirs" id="mDirs"></div><div class="files" id="mFiles"></div></div>
+</div></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const api = async (m, u, b) => { const r = await fetch(u, {method:m, headers:{'Content-Type':'application/json'}, body: b ? JSON.stringify(b) : undefined}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const thumb = (p, w=160) => `/thumb?w=${w}&path=${encodeURIComponent(p)}`;
+
+const FIELDS = {
+  projects: [
+    ['title','text'],['subtitle','text'],['slug','text','url path, e.g. whos-missing'],['year','text','e.g. 2024 or 2024–2025'],
+    ['kind','select',['series','photobook','installation','video']],['palette','select',['bw','color']],
+    ['status','select',['draft','wip','published'],'draft = hidden · wip = shown as work in progress · published'],
+    ['featured','check','show in the home hero mosaic'],['sort_order','number'],
+    ['excerpt','textarea','one or two sentences for the home page'],
+    ['statement','bigtext','blank line = new paragraph · "- " = bullet · **bold**'],
+    ['links','json','[{"label":"Read on Medium","url":"https://…"}]'],
+  ],
+  books: [
+    ['title','text'],['subtitle','text'],['slug','text'],['year','text'],['project_id','project'],
+    ['status','select',['draft','coming','available','sold_out']],['buy_url','text'],['buy_label','text'],
+    ['isbn','text','ISBN or ASIN'],['format','text','e.g. 21×21 cm softcover'],['pages','text'],['sort_order','number'],
+    ['description','textarea'],
+  ],
+  events: [
+    ['title','text'],['slug','text'],['kind','select',['exhibition','fair','talk','book_launch','residency','other']],
+    ['venue','text'],['city','text'],['start_date','text','YYYY-MM-DD'],['end_date','text','YYYY-MM-DD'],
+    ['status','select',['planned','upcoming','past','cancelled'],'planned = hidden from the site'],
+    ['url','text'],['project_ids','json','[1, 3] — ids of the projects shown'],['sort_order','number'],['description','textarea'],
+  ],
+};
+const OWNER = {projects:'project', books:'book', events:'event'};
+let table = 'projects', data = {}, current = null, projects = [];
+
+async function loadAll(){ data = await api('GET','/api/all'); projects = data.projects; }
+function go(){ table = (location.hash || '#projects').slice(1); document.querySelectorAll('header nav a').forEach(a => a.classList.toggle('on', a.hash === '#'+table)); current = null; render(); }
+window.addEventListener('hashchange', go);
+
+async function render(){
+  await loadAll();
+  if (table === 'site') return renderSite();
+  const items = data[table] || [];
+  $('#list').innerHTML = `<div class="tools"><button class="pri sm" onclick="create()">+ New ${OWNER[table]}</button><span class="hint">${items.length} records</span></div>` +
+    items.map(r => {
+      const cov = data.images.find(i => i.owner_type===OWNER[table] && i.owner_id===r.id && i.role==='cover') || data.images.find(i => i.owner_type===OWNER[table] && i.owner_id===r.id);
+      const meta = table==='events' ? `${r.city||''} · ${r.start_date||''}` : `${r.year||''}${r.palette==='color'?' · colour':''}`;
+      return `<div class="row ${current===r.id?'on':''}" onclick="openRec(${r.id})"><img src="${cov?thumb(cov.path,96):''}" alt=""><div><div class="t">${esc(r.title)}</div><div class="m">${esc(meta)} <span class="pill ${r.status}">${r.status}</span></div></div></div>`;
+    }).join('');
+  if (current) renderEdit(items.find(r => r.id === current)); else $('#edit').innerHTML = '<div class="empty">Select or create a record.</div>';
+}
+
+function openRec(id){ current = id; render(); }
+async function create(){
+  const n = (data[table]||[]).length + 1;
+  const base = {projects:{title:'New project',slug:'new-project-'+n,status:'draft',sort_order:n*10}, books:{title:'New book',slug:'new-book-'+n,status:'draft',sort_order:n*10}, events:{title:'New event',slug:'new-event-'+n,status:'planned',sort_order:n*10}}[table];
+  const r = await api('POST','/api/'+table, base); current = r.id; render();
+}
+
+function field(r, [name, type, opt, hint]){
+  const v = r[name] ?? '';
+  let inp;
+  if (type==='select') inp = `<select name="${name}">${opt.map(o=>`<option ${o===v?'selected':''}>${o}</option>`).join('')}</select>`;
+  else if (type==='check') inp = `<label style="padding:0"><input type="checkbox" name="${name}" ${v?'checked':''} style="width:auto"> ${opt||''}</label>`;
+  else if (type==='textarea') inp = `<textarea name="${name}">${esc(v)}</textarea>`;
+  else if (type==='bigtext') inp = `<textarea name="${name}" class="big">${esc(v)}</textarea>`;
+  else if (type==='json') inp = `<textarea name="${name}" style="font-family:ui-monospace,Menlo,monospace;min-height:60px">${esc(typeof v==='string'?v:JSON.stringify(v))}</textarea>`;
+  else if (type==='project') inp = `<select name="${name}"><option value="">—</option>${projects.map(p=>`<option value="${p.id}" ${p.id==v?'selected':''}>${esc(p.title)}</option>`).join('')}</select>`;
+  else if (type==='number') inp = `<input type="number" name="${name}" value="${esc(v)}">`;
+  else inp = `<input name="${name}" value="${esc(v)}">`;
+  const h = (type==='select'||type==='check') ? hint : opt;
+  return `<div class="f"><label>${name.replace('_',' ')}</label><div>${inp}${h?`<div class="hint">${esc(h)}</div>`:''}</div></div>`;
+}
+
+function renderEdit(r){
+  if (!r) return;
+  const o = OWNER[table];
+  const imgs = data.images.filter(i => i.owner_type===o && i.owner_id===r.id).sort((a,b)=>a.sort_order-b.sort_order||a.id-b.id);
+  const notes = data.notes.filter(n => n.owner_type===o && n.owner_id===r.id);
+  $('#edit').innerHTML = `
+    <div class="bar"><h2 style="margin:0">${esc(r.title)}</h2><span class="pill ${r.status}">${r.status}</span><span class="sp"></span>
+      <span class="hint">updated ${r.updated_at||''}</span>
+      <button class="danger sm" onclick="del(${r.id})">Delete</button></div>
+    <form id="form" onsubmit="save(event,${r.id})">${FIELDS[table].map(f=>field(r,f)).join('')}
+      <div class="bar"><button class="pri" type="submit">Save</button><span class="hint" id="saved"></span></div></form>
+    <h3>Images <span class="hint">· first = cover unless a cover is set · drag not supported, use ◀ ▶</span></h3>
+    <div class="bar"><button class="sm" onclick="pick('${o}',${r.id})">+ Add images from disk…</button></div>
+    <div class="imgs">${imgs.map((i,idx)=>`<div class="im ${i.role==='cover'?'cover':''}">
+      <img src="${thumb(i.path,320)}" title="${esc(i.path)}" loading="lazy">
+      <div class="c"><div class="hint" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(i.path.split('/').pop())}</div>
+        <input placeholder="caption" value="${esc(i.caption)}" onchange="upImg(${i.id},{caption:this.value})">
+        <div class="ops"><button class="sm" onclick="mv(${idx},-1)">◀</button><button class="sm" onclick="mv(${idx},1)">▶</button>
+        <button class="sm" onclick="upImg(${i.id},{role:'${i.role==='cover'?'gallery':'cover'}'})">${i.role==='cover'?'unset cover':'set cover'}</button>
+        <button class="sm danger" onclick="delImg(${i.id})">×</button></div></div></div>`).join('')}</div>
+    <h3>Notes & to-do</h3>
+    <div class="bar"><input id="noteIn" placeholder="e.g. write the statement, confirm venue, order prints…" onkeydown="if(event.key==='Enter'){event.preventDefault();addNote('${o}',${r.id})}"><button class="sm" onclick="addNote('${o}',${r.id})">Add</button></div>
+    ${notes.map(n=>`<div class="note ${n.done?'done':''}"><input type="checkbox" ${n.done?'checked':''} style="width:auto;margin-top:3px" onchange="api('PUT','/api/notes/${n.id}',{done:this.checked?1:0}).then(render)"><div style="flex:1">${esc(n.body)}</div><time>${n.created_at.slice(0,10)}</time><button class="sm" onclick="api('DELETE','/api/notes/${n.id}').then(render)">×</button></div>`).join('')}`;
+  window._imgs = imgs;
+}
+
+async function save(e, id){
+  e.preventDefault();
+  const fd = new FormData(e.target), body = {};
+  for (const [name,type] of FIELDS[table]) {
+    if (type==='check') body[name] = fd.get(name) ? 1 : 0;
+    else if (type==='json') { try { body[name] = JSON.parse(fd.get(name)||'[]'); } catch { return alert(name+' is not valid JSON'); } }
+    else if (type==='number') body[name] = Number(fd.get(name)||0);
+    else if (type==='project') body[name] = fd.get(name) ? Number(fd.get(name)) : null;
+    else body[name] = fd.get(name);
+  }
+  await api('PUT',`/api/${table}/${id}`, body); $('#saved').textContent = 'saved ✓'; render();
+}
+async function del(id){ if (!confirm('Delete this record and its images/notes?')) return; await api('DELETE',`/api/${table}/${id}`); current=null; render(); }
+async function upImg(id, b){ await api('PUT','/api/images/'+id, b); render(); }
+async function delImg(id){ await api('DELETE','/api/images/'+id); render(); }
+async function mv(idx, d){ const a = window._imgs.map(i=>i.id); const j = idx+d; if (j<0||j>=a.length) return; [a[idx],a[j]]=[a[j],a[idx]]; await api('POST','/api/images/reorder',{ids:a}); render(); }
+async function addNote(o,id){ const v = $('#noteIn').value.trim(); if(!v) return; await api('POST','/api/notes',{owner_type:o,owner_id:id,body:v}); render(); }
+
+// ---- file picker
+let pickCtx = null, mSel = new Set(), mDirNow = '';
+function pick(o,id){ pickCtx={o,id}; mSel.clear(); $('#modal').style.display='flex'; browse(''); }
+function closeModal(){ $('#modal').style.display='none'; }
+async function browse(d){ const r = await api('GET','/api/browse?dir='+encodeURIComponent(d)); mDirNow = r.dir; $('#mDir').textContent = r.dir; $('#mDir').dataset.parent = r.parent;
+  $('#mDirs').innerHTML = r.roots.map(x=>`<div onclick="browse('${esc(x)}')">⌂ ${esc(x.split('/').pop())}</div>`).join('') + r.dirs.map(x=>`<div onclick="browse('${esc(r.dir+'/'+x)}')">▸ ${esc(x)}</div>`).join('');
+  $('#mFiles').innerHTML = r.files.map(f=>`<div class="fi ${mSel.has(f.path)?'sel':''}" onclick="tog(this,'${esc(f.path)}')"><img src="${thumb(f.path,200)}" loading="lazy"><div>${esc(f.name)}<br><span class="hint">${(f.size/1048576).toFixed(1)} MB</span></div></div>`).join('') || '<div class="hint">no images here</div>';
+  selCount(); }
+function browseUp(){ const p = $('#mDir').dataset.parent; if (p) browse(p); }
+function tog(el,p){ if (mSel.has(p)) mSel.delete(p); else mSel.add(p); el.classList.toggle('sel'); selCount(); }
+function selCount(){ $('#mSel').textContent = mSel.size ? mSel.size+' selected' : ''; }
+async function pickDone(){ let n = (data.images.filter(i=>i.owner_type===pickCtx.o&&i.owner_id===pickCtx.id).length); for (const p of mSel) await api('POST','/api/images',{owner_type:pickCtx.o,owner_id:pickCtx.id,path:p,role:'gallery',sort_order:n++}); closeModal(); render(); }
+
+// ---- site & settings
+function renderSite(){
+  const s = data.settings;
+  const siteImgs = data.images.filter(i=>i.owner_type==='site');
+  const openNotes = data.notes.filter(n=>!n.done);
+  $('#list').innerHTML = `<div class="tools"><b>Site</b></div><div class="row on">Settings, bio, analytics, site images</div>
+    <div style="padding:14px"><div class="hint" style="margin-bottom:6px">OPEN TO-DOS (${openNotes.length})</div>${openNotes.map(n=>`<div class="note"><div style="flex:1">${esc(n.body)}</div><span class="hint">${n.owner_type} #${n.owner_id}</span></div>`).join('')||'<span class="hint">none</span>'}</div>`;
+  const keys = ['site_name','tagline','artist_name','city','email','instagram','medium','linkedin','base_url','domain','umami_website_id','umami_src','source_root'];
+  $('#edit').innerHTML = `<h2>Site & settings</h2><form onsubmit="saveSettings(event)">
+    ${keys.map(k=>`<div class="f"><label>${k.replace(/_/g,' ')}</label><input name="${k}" value="${esc(s[k])}"></div>`).join('')}
+    <div class="f"><label>bio</label><textarea name="bio" class="big" style="min-height:160px">${esc(s.bio)}</textarea></div>
+    <div class="bar"><button class="pri">Save settings</button><span class="hint" id="saved"></span></div></form>
+    <h3>Site images <span class="hint">· role: portrait (about page) · hero (home mosaic, optional — otherwise featured project covers are used)</span></h3>
+    <div class="bar"><button class="sm" onclick="pick('site',0)">+ Add…</button></div>
+    <div class="imgs">${siteImgs.map(i=>`<div class="im"><img src="${thumb(i.path,320)}"><div class="c"><select onchange="upImg(${i.id},{role:this.value})">${['portrait','hero','gallery'].map(r=>`<option ${r===i.role?'selected':''}>${r}</option>`).join('')}</select><div class="ops"><button class="sm danger" onclick="delImg(${i.id})">×</button></div></div></div>`).join('')}</div>
+    <h3>Build</h3><div class="bar"><button class="pri" onclick="build()">Build site now</button><span class="hint">renders docs/ and refreshes content.json — then commit &amp; push to publish</span></div><div id="log" style="display:none"></div>`;
+}
+async function saveSettings(e){ e.preventDefault(); const fd=new FormData(e.target); const b={}; for (const [k,v] of fd) b[k]=v; await api('PUT','/api/settings',b); $('#saved').textContent='saved ✓'; }
+async function build(){ const b=$('#buildBtn'); b.disabled=true; b.textContent='Building…'; try { const r = await api('POST','/api/build'); const log=$('#log'); if(log){log.style.display='block'; log.textContent=r.log;} b.textContent = r.ok ? 'Built ✓' : 'Build failed'; if(!r.ok) alert(r.log.slice(-800)); } finally { setTimeout(()=>{b.disabled=false;b.textContent='Build site'},2500); } }
+
+go();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Projects — {{ site.site_name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="section-head"><h1 class="h-page">Projects</h1><span class="count">{{ projects|length }}</span></div>
+  <div class="pgrid">
+    {% for p in projects %}
+    <a class="pcard {{ 'color' if p.palette == 'color' else 'bw' }}" href="/projects/{{ p.slug }}/">
+      {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="" loading="lazy">{% endif %}
+      <span class="pcard-t">{{ p.title|redact }}</span>
+      <span class="pcard-m">{{ p.year }}{% if p.palette == 'color' %} · colour{% endif %}{% if p.status == 'wip' %} · work in progress{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

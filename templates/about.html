@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}About — {{ site.site_name }}{% endblock %}
+{% block content %}
+<section class="section about">
+  <div class="about-grid">
+    <div class="about-text">
+      <h1 class="h-page">{{ site.artist_name }}</h1>
+      <p class="tagline-big">{{ site.tagline }}</p>
+      <div class="statement">{{ bio }}</div>
+      <div class="book-actions">
+        {% if site.email %}<a class="btn" href="mailto:{{ site.email }}">Get in touch</a>{% endif %}
+        {% if site.instagram %}<a class="btn ghost" href="{{ site.instagram }}" rel="me noopener">Instagram ↗</a>{% endif %}
+        {% if site.medium %}<a class="btn ghost" href="{{ site.medium }}" rel="me noopener">Medium ↗</a>{% endif %}
+        {% if site.linkedin %}<a class="btn ghost" href="{{ site.linkedin }}" rel="me noopener">LinkedIn ↗</a>{% endif %}
+      </div>
+    </div>
+    {% if portrait %}
+    <figure class="about-portrait"><img src="{{ portrait.url }}" width="{{ portrait.w }}" height="{{ portrait.h }}" alt="{{ site.artist_name }}">{% if portrait.caption %}<figcaption>{{ portrait.caption }}</figcaption>{% endif %}</figure>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

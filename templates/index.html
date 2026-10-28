@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="wordmark-xl">{{ site.site_name }}</h1>
+    <p class="hero-tag">{{ site.tagline }}</p>
+    <p class="hero-sub">AI-generated black & white photography for storytelling and social provocation — plus new work in colour.</p>
+    <a class="btn-light" href="/projects/">See the projects</a>
+  </div>
+  <div class="mosaic" aria-hidden="true">
+    {% for im in hero[:8] %}
+    <img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}">
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Projects</h2><span class="count">{{ projects|length }}</span></div>
+  <ol class="plist">
+    {% for p in projects %}
+    <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
+      <a class="pitem-img" href="/projects/{{ p.slug }}/">
+        {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="{{ p.title|plain }}" loading="lazy">{% endif %}
+      </a>
+      <div class="pitem-text">
+        <div class="meta"><span>{{ '%02d'|format(loop.index) }}</span><span>{{ p.year }}</span>{% if p.palette == 'color' %}<span class="pill color">colour</span>{% endif %}{% if p.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}</div>
+        <h3><a href="/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
+        {% if p.excerpt %}<p>{{ p.excerpt }}</p>{% endif %}
+        <a class="more" href="/projects/{{ p.slug }}/">View project</a>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% if books %}
+<section class="section section-dark">
+  <div class="section-head"><h2>Photobooks</h2><a class="more light" href="/photobooks/">All photobooks</a></div>
+  <div class="bgrid">
+    {% for b in books[:4] %}
+    <a class="bcard" href="/photobooks/#{{ b.slug }}">
+      {% if b.cover %}<img src="{{ b.cover.thumb }}" width="{{ b.cover.w }}" height="{{ b.cover.h }}" alt="" loading="lazy">{% endif %}
+      <span class="bcard-t">{{ b.title|redact }}</span>
+      <span class="bcard-m">{{ b.year }}{% if b.status == 'coming' %} · coming soon{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if events %}
+<section class="section">
+  <div class="section-head"><h2>Exhibitions</h2><a class="more" href="/exhibitions/">All exhibitions</a></div>
+  <ul class="elist">
+    {% for e in events[:4] %}
+    <li><a href="/exhibitions/#{{ e.slug }}"><span class="when">{{ e.when }}</span><span class="what">{{ e.title }}</span><span class="where">{{ e.venue }}{% if e.venue and e.city %}, {% endif %}{{ e.city }}</span></a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}
