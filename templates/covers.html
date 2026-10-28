@@ -17,11 +17,6 @@
       <span class="ccard-t">{{ a.title }}</span>
       <span class="ccard-m">{{ a.kind }}{% if a.year %} · {{ a.year }}{% endif %}{% if a.listen_url %} · <a href="{{ a.listen_url }}" rel="noopener">listen ↗</a>{% endif %}</span>
       {% if a.description %}<span class="ccard-m">{{ a.description }}</span>{% endif %}
-      {% if a.gallery|length > 1 %}
-      <div class="cover-alt">
-        {% for im in a.gallery %}{% if im != a.cover %}<a href="{{ im.url }}" data-lightbox="covers-{{ a.slug }}" data-caption="{{ a.artist }} — {{ a.title }}{% if im.caption %} · {{ im.caption }}{% endif %}"><img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="lazy"></a>{% endif %}{% endfor %}
-      </div>
-      {% endif %}
     </article>
     {% endfor %}
   </div>
