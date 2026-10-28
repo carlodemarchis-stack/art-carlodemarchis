@@ -22,7 +22,7 @@
 </head>
 <body class="page-{{ page }}">
 <a class="skip" href="#main">Skip to content</a>
-{% set upcoming = events|selectattr('status', 'equalto', 'upcoming')|list %}
+{% set upcoming = events|selectattr('status', 'equalto', 'upcoming')|sort(attribute='start_date')|list %}
 {% if upcoming %}
 <div class="alert" id="alert" hidden aria-live="polite">
   <span class="alert-label">This week</span>
