@@ -111,6 +111,8 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .statement h3{margin:28px 0 6px;font-size:1em;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
 .statement ul{padding-left:1.2em}
 .statement li{margin:6px 0}
+.prints{max-width:68ch;margin:32px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:15px;color:#333}
+.prints a{font-weight:600;text-decoration:underline;text-underline-offset:3px;margin-left:6px}
 .plinks{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 8px}
 .btn{display:inline-block;background:#000;color:#fff;font-weight:600;padding:11px 18px;border-radius:999px;font-size:15px;line-height:1.2}
 .btn:hover{background:#333}

@@ -58,6 +58,7 @@ DEFAULT_SETTINGS = {
     "linkedin": "",
     "domain": "",            # e.g. carlodemarchis.it -> writes docs/CNAME
     "base_url": "",          # public URL used for OG tags, e.g. https://carlodemarchis.it
+    "prints_note": "Available as fine art prints on two papers, in different sizes, on request.",  # shown on every series page; empty = hidden
     "umami_website_id": "",  # leave empty for no analytics
     "umami_src": "https://m.aguywithascarf.com/script.js",
     "source_root": os.path.expanduser("~/Documents/_cdm/_carlo/Art"),

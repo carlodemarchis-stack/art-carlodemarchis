@@ -29,6 +29,10 @@
   <div class="statement"><p class="muted">Work in progress — statement to follow.</p></div>
   {% endif %}
 
+  {% if site.prints_note and project.kind != 'commission' %}
+  <p class="prints">{{ site.prints_note }}{% if site.email %} <a href="mailto:{{ site.email }}?subject={{ project.title|plain|urlencode }}">Get in touch</a>{% endif %}</p>
+  {% endif %}
+
   {% if project.links or project.books or project.events %}
   <aside class="plinks">
     {% for l in project.links %}<a class="btn" href="{{ l.url }}" rel="noopener">{{ l.label }} ↗</a>{% endfor %}

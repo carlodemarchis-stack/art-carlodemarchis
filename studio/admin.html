@@ -229,7 +229,7 @@ function renderSite(){
   const openNotes = data.notes.filter(n=>!n.done);
   $('#list').innerHTML = `<div class="tools"><b>Site</b></div><div class="row on">Settings, bio, analytics, site images</div>
     <div style="padding:14px"><div class="hint" style="margin-bottom:6px">OPEN TO-DOS (${openNotes.length})</div>${openNotes.map(n=>`<div class="note"><div style="flex:1">${esc(n.body)}</div><span class="hint">${n.owner_type} #${n.owner_id}</span></div>`).join('')||'<span class="hint">none</span>'}</div>`;
-  const keys = ['site_name','tagline','artist_name','city','email','instagram','medium','linkedin','base_url','domain','umami_website_id','umami_src','source_root'];
+  const keys = ['site_name','tagline','artist_name','city','email','instagram','medium','linkedin','prints_note','base_url','domain','umami_website_id','umami_src','source_root'];
   $('#edit').innerHTML = `<h2>Site & settings</h2><form onsubmit="saveSettings(event)">
     ${keys.map(k=>`<div class="f"><label>${k.replace(/_/g,' ')}</label><input name="${k}" value="${esc(s[k])}"></div>`).join('')}
     <div class="f"><label>bio</label><textarea name="bio" class="big" style="min-height:160px">${esc(s.bio)}</textarea></div>
