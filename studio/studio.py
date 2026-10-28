@@ -59,6 +59,7 @@ DEFAULT_SETTINGS = {
     "domain": "",            # e.g. carlodemarchis.it -> writes docs/CNAME
     "base_url": "",          # public URL used for OG tags, e.g. https://carlodemarchis.it
     "artist_links": "{}",   # JSON {artist name: Spotify/Bandcamp url}, shown on the covers page
+    "spotify_playlist": "",   # Spotify embed URL (open.spotify.com/embed/...), shown at the bottom of the covers page
     "prints_note": "Available as museum-quality fine art paper prints, editions of 10, in different sizes, on request.",  # shown on every series page; empty = hidden
     "umami_website_id": "",  # leave empty for no analytics
     "umami_src": "https://m.aguywithascarf.com/script.js",

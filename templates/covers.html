@@ -21,5 +21,9 @@
     {% endfor %}
   </div>
   {% endfor %}
+  {% if site.spotify_playlist %}
+  <div class="artist-head" style="margin-top:64px"><h2>Listen</h2></div>
+  <iframe class="spotify" title="Spotify playlist" src="{{ site.spotify_playlist }}" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  {% endif %}
 </section>
 {% endblock %}
