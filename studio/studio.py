@@ -194,7 +194,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send_file(thumb(q.get("path", ""), int(q.get("w", 480))), "image/jpeg")
         if path == "/api/browse":
             return self.browse(con, q.get("dir", ""))
-        if path.startswith("/site"):          # /site/ is an alias of the built site's root
+        if path == "/site" or path.startswith("/site/"):   # /site/ is an alias of the built site's root
             path = path[len("/site"):] or "/"
         parts = path.strip("/").split("/")
         if len(parts) >= 2 and parts[0] == "api" and parts[1] in TABLES:
