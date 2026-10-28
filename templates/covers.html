@@ -7,7 +7,7 @@
   <div class="section-head"><h1 class="h-page">Album covers</h1><span class="count">{{ albums|length }}</span></div>
   <p class="lead">The same images, one square at a time: cover art for the music released under {{ artists|length }} names.</p>
   {% for artist in artists %}
-  <div class="artist-head"><h2>{{ artist }}</h2><span class="count">{{ albums|selectattr('artist', 'equalto', artist)|list|length }}</span></div>
+  <div class="artist-head"><h2>{{ artist }}</h2><span class="count">{{ albums|selectattr('artist', 'equalto', artist)|list|length }}</span>{% if artist_links.get(artist) %}<a class="more" href="{{ artist_links[artist] }}" rel="noopener">Listen on Spotify ↗</a>{% endif %}</div>
   <div class="cgrid">
     {% for a in albums if a.artist == artist %}
     <article class="ccard" id="{{ a.slug }}">
