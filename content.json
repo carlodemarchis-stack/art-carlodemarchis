@@ -207,18 +207,18 @@
    "id": 12,
    "slug": "quiet-chaos",
    "title": "Quiet Chaos",
-   "subtitle": "",
+   "subtitle": "Collages of cities, vegetation and the people who might live in between.",
    "year": "2025",
    "kind": "series",
    "palette": "color",
    "status": "published",
-   "excerpt": "",
-   "statement": "",
-   "links": "[]",
+   "excerpt": "Colour collages where façades, tramlines and palms share the same page: a way of imagining how we may live next, with the trees as the real urban planners.",
+   "statement": "At six in the morning, along the Po, Turin wakes up in silence. The trees on the river draw shadows that change the geometry of the city while almost everyone is still asleep. It is in those moments that I started asking myself whether we have ever really understood what \"urban culture\" means.\n\nFor years I thought of a city as a weave of people, spaces and signs: palaces, museums, festivals, galleries, clubs, communities. A reassuring definition, and an incomplete one. It leaves out the natural dimension — the one that accompanies the city in silence, protects it, regulates it, makes it liveable. Above all the trees, which more than any other living thing are part of its design, and the part we forget first.\n\nTrees are the real urban planners. They grow while we sleep, they shift perspectives, they create microclimates. They do not decorate the city: they project it. And yet we keep talking about them as furniture rather than as living architecture.\n\n\"Quiet Chaos\" is a series of colour collages where that order is reversed. Fragments of façades, towers, tramlines and shop windows are layered with palms, ferns, trunks and undergrowth, and with figures who look as if they were photographed in another decade — pasted, taped, torn at the edges, like pages from a sketchbook of a city that has not been built yet. The chaos is quiet because nothing in it is violent: the vegetation does not take the city back, it moves in, and the city lets it.\n\nIt is a way of imagining how we may live next. Not the smooth, rendered \"green city\" of the brochures, but something closer to what a street actually feels like when a canopy closes over it: cooler, slower, less legible, more alive. A city where the architecture has to negotiate with something that keeps growing after the architects are gone.\n\nPlanting a tree today is a subversive act. Whoever plants knows they will not sit in the full shade of what they planted. In a city that measures everything in electoral terms, seeding for decades that will not belong to you is a quiet form of resistance, and the only real definition of culture I have found: the capacity to sow without harvesting, the courage to build for people we do not know yet.",
+   "links": "[{\"label\": \"Riflessioni su Torino, natura e cultura (Torino e Cultura)\", \"url\": \"https://torinoecultura.substack.com/p/riflessioni-su-torino-natura-e-cultura\"}]",
    "sort_order": 210,
    "featured": 0,
    "created_at": "2026-10-28 04:54:11",
-   "updated_at": "2026-10-28 05:20:20"
+   "updated_at": "2026-10-28 05:25:47"
   },
   {
    "id": 13,
@@ -275,18 +275,18 @@
    "id": 16,
    "slug": "people-at-an-exhibition",
    "title": "People at an exhibition",
-   "subtitle": "",
+   "subtitle": "Watching the people who are watching.",
    "year": "2025",
    "kind": "series",
    "palette": "color",
    "status": "published",
-   "excerpt": "",
-   "statement": "",
+   "excerpt": "A series about the other half of every exhibition: the visitors, caught between the art and the viewer in compositions the artist never planned.",
+   "statement": "I have always been drawn to exhibitions — of photography first, then of contemporary art in all its forms. The white room, the sequence, the silence that is never quite silent, the moment when an image you had only seen on a screen suddenly has a size, a surface and a distance from your body. I go as often as I can, and I go back.\n\nSomewhere along the way a second obsession grew next to the first: watching the people who are watching. The couple who disagree in front of a painting without saying a word. The man who reads the wall text longer than he looks at the work. The woman who photographs the photograph. The child who finds the only thing in the room nobody else noticed. A group that lines up in front of a mural and, without meaning to, becomes its missing foreground.\n\nAt some point I realised I was spending more time looking at the visitors than at the art, and that this was not a distraction from the exhibition but another way of attending it. A work is not finished when it is hung. It is finished every time someone stands in front of it, and every one of those encounters has its own composition: a back, a shoulder, a pair of glasses, a coat against a colour.\n\n\"People at an exhibition\" is a series of AI-generated colour photographs about those compositions. The works on the walls are invented; the way people stand in front of them is not. Each image is built as if seen from across the room: figures caught between the art and the viewer, reflected, silhouetted, absorbed, bored, or so still that it is hard to say which side of the frame they belong to.\n\nIt is a small tribute to the audience — the half of every exhibition that is never in the catalogue.",
    "links": "[]",
    "sort_order": 250,
    "featured": 0,
    "created_at": "2026-10-28 04:54:11",
-   "updated_at": "2026-10-28 05:20:20"
+   "updated_at": "2026-10-28 05:25:47"
   },
   {
    "id": 17,
@@ -2037,7 +2037,7 @@
    "owner_type": "project",
    "owner_id": 12,
    "body": "New colour project found in AI Art — write excerpt + statement, pick the final images, then set status to published.",
-   "done": 0,
+   "done": 1,
    "created_at": "2026-10-28 04:54:11"
   },
   {
@@ -2069,7 +2069,7 @@
    "owner_type": "project",
    "owner_id": 16,
    "body": "New colour project found in AI Art — write excerpt + statement, pick the final images, then set status to published.",
-   "done": 0,
+   "done": 1,
    "created_at": "2026-10-28 04:54:11"
   },
   {
@@ -2127,6 +2127,22 @@
    "body": "Statement written from the 'continental-pole-opening' talk deck (Oct 2026) — review wording; the three deck photos are ~1900px, replace with hi-res originals when available.",
    "done": 0,
    "created_at": "2026-10-28 05:22:32"
+  },
+  {
+   "id": 20,
+   "owner_type": "project",
+   "owner_id": 12,
+   "body": "Statement drafted by Claude on 2026-10-28 — review and edit in your own words.",
+   "done": 0,
+   "created_at": "2026-10-28 05:25:47"
+  },
+  {
+   "id": 21,
+   "owner_type": "project",
+   "owner_id": 16,
+   "body": "Statement drafted by Claude on 2026-10-28 — review and edit in your own words.",
+   "done": 0,
+   "created_at": "2026-10-28 05:25:47"
   }
  ]
 }
