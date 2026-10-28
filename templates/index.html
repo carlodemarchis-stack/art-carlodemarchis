@@ -27,7 +27,7 @@
     {% for p in series %}
     <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
       <a class="pitem-img" href="/projects/{{ p.slug }}/">
-        {{ img(p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
+        {{ img(p.hero or p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
       </a>
       <div class="pitem-text">
         <div class="meta"><span>{{ '%02d'|format(loop.index) }}</span><span>{{ p.year }}</span>{% if p.palette == 'color' %}<span class="pill color">colour</span>{% endif %}{% if p.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}</div>
@@ -47,7 +47,7 @@
     {% for p in specials %}
     <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
       <a class="pitem-img" href="/projects/{{ p.slug }}/">
-        {{ img(p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
+        {{ img(p.hero or p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
       </a>
       <div class="pitem-text">
         <div class="meta"><span class="pill">special project</span><span>{{ p.year }}</span></div>
