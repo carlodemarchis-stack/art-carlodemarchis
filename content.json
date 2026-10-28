@@ -1698,6 +1698,15 @@
    "sort_order": 1
   },
   {
+   "id": 252,
+   "owner_type": "site",
+   "owner_id": 0,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/site/portrait-colour.heic",
+   "role": "portrait",
+   "caption": "",
+   "sort_order": 1
+  },
+  {
    "id": 3,
    "owner_type": "project",
    "owner_id": 1,

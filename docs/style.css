@@ -188,10 +188,12 @@ p a{text-decoration:underline;text-underline-offset:3px}
 /* about */
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
 .tagline-big{font-weight:700;letter-spacing:-.03em;font-size:clamp(20px,2.4vw,30px);margin:10px 0 28px;color:#333}
+.about-portraits{display:flex;flex-direction:column;gap:18px}
 .about-portrait{margin:0}
-.about-portrait img{width:100%;filter:grayscale(1) contrast(1.05)}
+.about-portrait img{width:100%}
+.about-portrait.bw img{filter:grayscale(1) contrast(1.05)}
 .about-portrait figcaption{font-size:13px;color:var(--mute);margin-top:8px}
-@media (max-width:760px){.about-grid{grid-template-columns:1fr}.about-portrait{order:-1;max-width:420px}}
+@media (max-width:760px){.about-grid{grid-template-columns:1fr}.about-portraits{order:-1;max-width:420px}}
 
 /* footer */
 .foot{background:#000;color:#fff;padding:48px var(--gut) 56px;margin-top:40px}

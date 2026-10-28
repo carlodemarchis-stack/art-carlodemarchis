@@ -14,8 +14,12 @@
         {% if site.linkedin %}<a class="btn ghost" href="{{ site.linkedin }}" rel="me noopener">LinkedIn ↗</a>{% endif %}
       </div>
     </div>
-    {% if portrait %}
-    <figure class="about-portrait">{{ img(portrait, '(max-width:760px) 100vw, 45vw', site.artist_name, eager=True, full=True) }}{% if portrait.caption %}<figcaption>{{ portrait.caption }}</figcaption>{% endif %}</figure>
+    {% if portraits %}
+    <div class="about-portraits">
+      {% for im in portraits %}
+      <figure class="about-portrait{{ ' bw' if loop.first else ' colour' }}">{{ img(im, '(max-width:760px) 100vw, 45vw', site.artist_name, eager=loop.first, full=True) }}{% if im.caption %}<figcaption>{{ im.caption }}</figcaption>{% endif %}</figure>
+      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </section>
