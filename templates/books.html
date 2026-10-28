@@ -18,7 +18,8 @@
         <div class="book-actions">
           {% if b.status == 'available' and b.buy_url %}<a class="btn" href="{{ b.buy_url }}" rel="noopener">{{ b.buy_label or 'Buy' }} ↗</a>
           {% elif b.status == 'coming' %}<span class="pill wip">coming soon</span>
-          {% elif b.status == 'sold_out' %}<span class="pill">sold out</span>{% endif %}
+          {% elif b.status == 'sold_out' %}<span class="pill">sold out</span>
+          {% elif b.status == 'private' %}<span class="pill">private edition — not for sale</span>{% endif %}
           {% if b.project %}<a class="btn ghost" href="/projects/{{ b.project.slug }}/">See the project</a>{% endif %}
         </div>
         {% if b.gallery|length > 1 %}

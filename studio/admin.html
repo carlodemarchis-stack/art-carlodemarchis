@@ -98,7 +98,7 @@ const thumb = (p, w=160) => `/thumb?w=${w}&path=${encodeURIComponent(p)}`;
 const FIELDS = {
   projects: [
     ['title','text'],['subtitle','text'],['slug','text','url path, e.g. whos-missing'],['year','text','e.g. 2024 or 2024–2025'],
-    ['kind','select',['series','photobook','installation','video']],['palette','select',['bw','color']],
+    ['kind','select',['series','photobook','installation','video','commission'],'commission = shown as a special project'],['palette','select',['bw','color']],
     ['status','select',['draft','wip','published'],'draft = hidden · wip = shown as work in progress · published'],
     ['featured','check','show in the home hero mosaic'],['sort_order','number'],
     ['excerpt','textarea','one or two sentences for the home page'],
@@ -107,7 +107,7 @@ const FIELDS = {
   ],
   books: [
     ['title','text'],['subtitle','text'],['slug','text'],['year','text'],['project_id','project'],
-    ['status','select',['draft','coming','available','sold_out']],['buy_url','text'],['buy_label','text'],
+    ['status','select',['draft','coming','available','sold_out','private'],'private = shown as a private edition, no buy link'],['buy_url','text'],['buy_label','text'],
     ['isbn','text','ISBN or ASIN'],['format','text','e.g. 21×21 cm softcover'],['pages','text'],['sort_order','number'],
     ['description','textarea'],
   ],

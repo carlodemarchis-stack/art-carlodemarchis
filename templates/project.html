@@ -6,7 +6,7 @@
 <article class="project {{ 'color' if project.palette == 'color' else 'bw' }}">
   <header class="phead">
     <div class="meta">
-      <a href="/projects/">Projects</a><span>{{ project.year }}</span><span>{{ project.kind.replace('_', ' ') }}</span>
+      <a href="/projects/">Projects</a><span>{{ project.year }}</span>{% if project.kind == 'commission' %}<span class="pill">special project</span>{% else %}<span>{{ project.kind.replace('_', ' ') }}</span>{% endif %}
       <span>{{ 'colour' if project.palette == 'color' else 'black & white' }}</span>
       {% if project.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}
     </div>

@@ -14,10 +14,12 @@
   </div>
 </section>
 
+{% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
+{% set series = projects|rejectattr('kind', 'equalto', 'commission')|list %}
 <section class="section">
-  <div class="section-head"><h2>Projects</h2><span class="count">{{ projects|length }}</span></div>
+  <div class="section-head"><h2>Projects</h2><span class="count">{{ series|length }}</span></div>
   <ol class="plist">
-    {% for p in projects %}
+    {% for p in series %}
     <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
       <a class="pitem-img" href="/projects/{{ p.slug }}/">
         {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="{{ p.title|plain }}" loading="lazy">{% endif %}
@@ -33,6 +35,28 @@
   </ol>
 </section>
 
+{% if specials %}
+<section class="section">
+  <div class="section-head"><h2>Special projects</h2><span class="count">{{ specials|length }}</span></div>
+  <ol class="plist">
+    {% for p in specials %}
+    <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
+      <a class="pitem-img" href="/projects/{{ p.slug }}/">
+        {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="{{ p.title|plain }}" loading="lazy">{% endif %}
+      </a>
+      <div class="pitem-text">
+        <div class="meta"><span class="pill">special project</span><span>{{ p.year }}</span></div>
+        <h3><a href="/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
+        {% if p.subtitle %}<p class="subtitle-sm">{{ p.subtitle }}</p>{% endif %}
+        {% if p.excerpt %}<p>{{ p.excerpt }}</p>{% endif %}
+        <a class="more" href="/projects/{{ p.slug }}/">View project</a>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
 {% if books %}
 <section class="section section-dark">
   <div class="section-head"><h2>Photobooks</h2><a class="more light" href="/photobooks/">All photobooks</a></div>
@@ -41,7 +65,7 @@
     <a class="bcard" href="/photobooks/#{{ b.slug }}">
       {% if b.cover %}<img src="{{ b.cover.thumb }}" width="{{ b.cover.w }}" height="{{ b.cover.h }}" alt="" loading="lazy">{% endif %}
       <span class="bcard-t">{{ b.title|redact }}</span>
-      <span class="bcard-m">{{ b.year }}{% if b.status == 'coming' %} · coming soon{% endif %}</span>
+      <span class="bcard-m">{{ b.year }}{% if b.status == 'coming' %} · coming soon{% elif b.status == 'private' %} · private edition{% endif %}</span>
     </a>
     {% endfor %}
   </div>

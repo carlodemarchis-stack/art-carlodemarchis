@@ -17,6 +17,23 @@
  },
  "projects": [
   {
+   "id": 18,
+   "slug": "torino-moves",
+   "title": "Torino Moves",
+   "subtitle": "The building in the city, the city in the building — for Reply, on the meeting-room glass of Caserma De Sonnaz, Torino",
+   "year": "2025–2026",
+   "kind": "commission",
+   "palette": "bw",
+   "status": "published",
+   "excerpt": "A site-specific, room-specific, glass-specific AI photography project: a black and white Torino in movement, printed on the meeting-room glass of Reply's new headquarters — each image built from the letters of its own prompt.",
+   "statement": "The making of an AI photography project for Reply, on the meeting-room glass of Caserma De Sonnaz in Torino — in the author's own words, from the book \"Torino Moves\".\n\nA company at the front edge of technology asked an artist to put a living city onto the glass of its meeting rooms, and we made it together. Reply had taken on an enormous building in the centre of Torino, the former Caserma De Sonnaz, a nineteenth-century cavalry barracks of around twenty thousand square metres built on the ground of the old Cittadella, and turned it into a second home for the company. The architects, ACPV ARCHITECTS Antonio Citterio Patricia Viel, kept the skeleton intact and rebuilt the inside as a place of glass and light.\n\nIt started with street photography: a small book with a long title, Walking in the Streets of Turin with the Phone in My Hands, Scrolling Feeds and Sending Messages. Reply liked those photographs because they were not the postcard Torino. Then the real problem arrived, and the real problem became the project. The building is full of glass meeting rooms, and glass is a problem when you need to discuss something confidential while clients walk the corridors a few metres away. What if the photographs lived on that glass, printed in a translucent way, doing the practical job of privacy while they did something else as well?\n\nThe concept we settled on was movement. Torino moves. I did not want views of the city hung on the walls like windows onto somewhere else; I wanted the building immersed in Torino and Torino immersed in the building. Children running through a fountain. Dancers caught mid-turn on the stage of the Teatro Regio. Musicians holding the middle of a street while the crowd blurred past. Travellers crossing the great hall of Porta Nuova. Students on the steps down to the Po, the cafés under the porticoes, the book fair at Lingotto, riders on a cold morning on the hill above the city. The city doing the ordinary things it does, held still for a second and then let go.\n\nThe work was room-specific, then glass-specific. A meeting room is not one sheet of glass: it is a sequence of panes, sometimes seven, with white borders between, a door in the middle, an opening at the top, a corner. I went to the building two or three times a week while the glass went up, sat in half-built rooms and moved photographs around the map of the two floors until the rooms felt right together.\n\nWhen it came to printing, I asked to put the prompt into the picture. Each image is built from the letters of its own prompt, the blank spaces between words acting as the dots of a newspaper halftone; even a pure white area is made of letters printed white. From across the room you read it as an image. Closer, it stops being an image and becomes letters you can read, and touch: the print has a slight relief under your fingers. A sentence that runs through five languages — about art, innovation and AI — runs through the rooms as well.\n\nNone of it happened alone. Fabio Zappelli opened the door and trusted the idea early; Paolo Corsaro and Emanuele Dedonno in Reply's design operations were with me through the whole middle of it; Paolo Mazza and the architects at ACPV gave me the geometry I had to answer to; the print specialists ran hundreds of test sheets on real glass. Then, in the space of a week, the people arrived — first tens, then hundreds — inside a building that had been empty every other time I had stood in it. And in one of the rooms, among the books, there is a small figure reading. It is me.",
+   "links": "[]",
+   "sort_order": 5,
+   "featured": 0,
+   "created_at": "2026-10-28 07:18:52",
+   "updated_at": "2026-10-28 07:18:52"
+  },
+  {
    "id": 13,
    "slug": "pole",
    "title": "46°16′48″ N, 86°40′12″ E",
@@ -401,19 +418,19 @@
    "id": 6,
    "slug": "no-story",
    "title": "No Story",
-   "subtitle": "",
+   "subtitle": "Private edition",
    "year": "2026",
    "project_id": null,
-   "status": "draft",
+   "status": "private",
    "buy_url": "",
    "buy_label": "Buy on Amazon",
    "isbn": "",
    "format": "",
    "pages": "",
-   "description": "",
-   "sort_order": 60,
+   "description": "Colour collages with no story attached — a book made for a few hands, not for sale.",
+   "sort_order": 70,
    "created_at": "2026-10-28 04:54:11",
-   "updated_at": "2026-10-28 04:54:11"
+   "updated_at": "2026-10-28 07:18:52"
   }
  ],
  "events": [
@@ -1336,6 +1353,15 @@
    "sort_order": 0
   },
   {
+   "id": 221,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/111a.png",
+   "role": "cover",
+   "caption": "Room 111a — musicians in the street",
+   "sort_order": 0
+  },
+  {
    "id": 15,
    "owner_type": "project",
    "owner_id": 2,
@@ -1606,6 +1632,15 @@
    "sort_order": 1
   },
   {
+   "id": 222,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/113.png",
+   "role": "gallery",
+   "caption": "Room 113 — Teatro Regio",
+   "sort_order": 1
+  },
+  {
    "id": 3,
    "owner_type": "project",
    "owner_id": 1,
@@ -1813,6 +1848,15 @@
    "sort_order": 2
   },
   {
+   "id": 223,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/114.png",
+   "role": "gallery",
+   "caption": "Room 114 — the square",
+   "sort_order": 2
+  },
+  {
    "id": 4,
    "owner_type": "project",
    "owner_id": 1,
@@ -2002,6 +2046,15 @@
    "sort_order": 3
   },
   {
+   "id": 224,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/116.png",
+   "role": "gallery",
+   "caption": "Room 116 — the fountain",
+   "sort_order": 3
+  },
+  {
    "id": 5,
    "owner_type": "project",
    "owner_id": 1,
@@ -2173,6 +2226,15 @@
    "sort_order": 4
   },
   {
+   "id": 225,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/117.png",
+   "role": "gallery",
+   "caption": "Room 117–118 — Porta Nuova",
+   "sort_order": 4
+  },
+  {
    "id": 6,
    "owner_type": "project",
    "owner_id": 1,
@@ -2317,6 +2379,15 @@
    "sort_order": 5
   },
   {
+   "id": 226,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/123.png",
+   "role": "gallery",
+   "caption": "Room 123–124 — jugglers",
+   "sort_order": 5
+  },
+  {
    "id": 20,
    "owner_type": "project",
    "owner_id": 2,
@@ -2425,6 +2496,15 @@
    "sort_order": 6
   },
   {
+   "id": 227,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/125-125a.png",
+   "role": "gallery",
+   "caption": "Room 125–125a — the Po",
+   "sort_order": 6
+  },
+  {
    "id": 8,
    "owner_type": "project",
    "owner_id": 1,
@@ -2497,6 +2577,15 @@
    "sort_order": 7
   },
   {
+   "id": 228,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/127_3000x3000.png",
+   "role": "gallery",
+   "caption": "Room 126–127 — the Murazzi",
+   "sort_order": 7
+  },
+  {
    "id": 9,
    "owner_type": "project",
    "owner_id": 1,
@@ -2560,6 +2649,15 @@
    "sort_order": 8
   },
   {
+   "id": 229,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/130.png",
+   "role": "gallery",
+   "caption": "Room 130 — the café",
+   "sort_order": 8
+  },
+  {
    "id": 10,
    "owner_type": "project",
    "owner_id": 1,
@@ -2611,6 +2709,15 @@
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI Art/Rubbles/cdm_photo_bw_destruction_and_rubble_in_Detroit_in_1975_with_few_88f02c74-c95c-4b14-8d5a-4b7f2a2bbd9f.png",
    "role": "gallery",
    "caption": "",
+   "sort_order": 9
+  },
+  {
+   "id": 230,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/130 bis.png",
+   "role": "gallery",
+   "caption": "Room 130",
    "sort_order": 9
   },
   {
@@ -2668,6 +2775,15 @@
    "sort_order": 10
   },
   {
+   "id": 231,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/131.png",
+   "role": "gallery",
+   "caption": "Room 131",
+   "sort_order": 10
+  },
+  {
    "id": 25,
    "owner_type": "project",
    "owner_id": 2,
@@ -2713,6 +2829,15 @@
    "sort_order": 11
   },
   {
+   "id": 232,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/134.png",
+   "role": "gallery",
+   "caption": "Room 134 — Nervi's hall",
+   "sort_order": 11
+  },
+  {
    "id": 13,
    "owner_type": "project",
    "owner_id": 1,
@@ -2749,6 +2874,15 @@
    "sort_order": 12
   },
   {
+   "id": 233,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/136.png",
+   "role": "gallery",
+   "caption": "Room 135–136 — the hill",
+   "sort_order": 12
+  },
+  {
    "id": 27,
    "owner_type": "project",
    "owner_id": 2,
@@ -2767,6 +2901,15 @@
    "sort_order": 13
   },
   {
+   "id": 234,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/139.png",
+   "role": "gallery",
+   "caption": "Room 139–139a — the book fair",
+   "sort_order": 13
+  },
+  {
    "id": 54,
    "owner_type": "project",
    "owner_id": 4,
@@ -2774,6 +2917,105 @@
    "role": "gallery",
    "caption": "",
    "sort_order": 14
+  },
+  {
+   "id": 235,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/140.png",
+   "role": "gallery",
+   "caption": "Room 140–141 — reading",
+   "sort_order": 14
+  },
+  {
+   "id": 236,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/141.png",
+   "role": "gallery",
+   "caption": "Room 140–141 — reading",
+   "sort_order": 15
+  },
+  {
+   "id": 237,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/143.png",
+   "role": "gallery",
+   "caption": "Room 143 — the porticoes",
+   "sort_order": 16
+  },
+  {
+   "id": 238,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/210.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 17
+  },
+  {
+   "id": 239,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/211.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 18
+  },
+  {
+   "id": 240,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/212.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 19
+  },
+  {
+   "id": 241,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/214.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 20
+  },
+  {
+   "id": 242,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/216.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 21
+  },
+  {
+   "id": 243,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/217.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 22
+  },
+  {
+   "id": 244,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/220.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 23
+  },
+  {
+   "id": 245,
+   "owner_type": "project",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/222.png",
+   "role": "gallery",
+   "caption": "Level 2",
+   "sort_order": 24
   }
  ],
  "notes": [
@@ -3144,6 +3386,14 @@
    "body": "Add the closing date of the Art Week room.",
    "done": 0,
    "created_at": "2026-10-28 07:12:37"
+  },
+  {
+   "id": 47,
+   "owner_type": "project",
+   "owner_id": 18,
+   "body": "Statement abridged from the Torino Moves book (your words) — review. Room captions guessed from the book's chapter order; images 210–222 uncaptioned. Decide whether the book itself goes on the Photobooks page.",
+   "done": 0,
+   "created_at": "2026-10-28 07:18:52"
   }
  ]
 }

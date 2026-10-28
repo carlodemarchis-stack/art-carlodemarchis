@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Projects — {{ site.site_name }}{% endblock %}
 {% block content %}
+{% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
+{% set series = projects|rejectattr('kind', 'equalto', 'commission')|list %}
 <section class="section">
-  <div class="section-head"><h1 class="h-page">Projects</h1><span class="count">{{ projects|length }}</span></div>
+  <div class="section-head"><h1 class="h-page">Projects</h1><span class="count">{{ series|length }}</span></div>
   <div class="pgrid">
-    {% for p in projects %}
+    {% for p in series %}
     <a class="pcard {{ 'color' if p.palette == 'color' else 'bw' }}" href="/projects/{{ p.slug }}/">
       {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="" loading="lazy">{% endif %}
       <span class="pcard-t">{{ p.title|redact }}</span>
@@ -12,5 +14,17 @@
     </a>
     {% endfor %}
   </div>
+  {% if specials %}
+  <div class="section-head" style="margin-top:64px"><h2>Special projects</h2><span class="count">{{ specials|length }}</span></div>
+  <div class="pgrid">
+    {% for p in specials %}
+    <a class="pcard" href="/projects/{{ p.slug }}/">
+      {% if p.cover %}<img src="{{ p.cover.thumb }}" width="{{ p.cover.w }}" height="{{ p.cover.h }}" alt="" loading="lazy">{% endif %}
+      <span class="pcard-t">{{ p.title|redact }}</span>
+      <span class="pcard-m">{{ p.subtitle }}{% if p.year %} · {{ p.year }}{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
 </section>
 {% endblock %}

@@ -76,6 +76,7 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .pitem-img img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--soft)}
 .pitem-text h3{font-weight:700;letter-spacing:-.035em;font-size:clamp(26px,3.6vw,46px);line-height:1.02;margin:0 0 14px;text-wrap:balance}
 .pitem-text p{color:#333;max-width:48ch;font-size:17px;margin:0 0 18px}
+.pitem-text .subtitle-sm{color:var(--mute);font-size:15px;margin:-6px 0 14px}
 @media (max-width:760px){.pitem{grid-template-columns:1fr}.pitem:nth-child(even) .pitem-img{order:0}}
 
 /* project grid (/projects/) */
