@@ -228,12 +228,13 @@ def main():
     pool = {"bw": [tile(p) for p in feat if p["palette"] != "color"], "color": [tile(p) for p in feat if p["palette"] == "color"]}
     tiles = [t for pair in zip(pool["bw"][:2], pool["color"][:2]) for t in pair] or [tile(p) for p in projects if p["cover"]][:4]
     hero = [p["cover"] for p in feat][:1] or [p["cover"] for p in projects if p["cover"]][:1]   # for og:image
+    hero_bg = next((i for i in site_imgs if i["role"] == "hero"), None)                       # home backdrop (landscape)
 
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")),
                       autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
     env.filters.update(redact=redact, md=md, plain=plain)
     base = s.get("base_url", "").rstrip("/")
-    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists,
+    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, hero_bg=hero_bg, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists,
                portrait=portrait, year=date.today().year, bio=md(s.get("bio", "")))
 
     def render(tpl, out, **kw):

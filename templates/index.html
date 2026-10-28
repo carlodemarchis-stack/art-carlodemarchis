@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="hero">
+<section class="hero{% if hero_bg %} has-bg{% endif %}">
+  {% if hero_bg %}<img class="hero-bg" src="{{ hero_bg.thumb }}" width="{{ hero_bg.w }}" height="{{ hero_bg.h }}" alt="" aria-hidden="true">{% endif %}
   <div class="hero-text">
     <h1 class="wordmark-xl">{{ site.site_name }}</h1>
     <p class="hero-tag">{{ site.tagline }}</p>

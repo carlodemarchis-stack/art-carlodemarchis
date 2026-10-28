@@ -1410,6 +1410,15 @@
    "sort_order": 0
   },
   {
+   "id": 251,
+   "owner_type": "site",
+   "owner_id": 0,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/keynote-2025/carlodemarchis_black_and_white_photo_Siamo_frammenti_di_tempo_s_c452fd4f-b033-46ff-b689-c55aede62925-16822.png",
+   "role": "hero",
+   "caption": "home hero backdrop (landscape screens)",
+   "sort_order": 0
+  },
+  {
    "id": 15,
    "owner_type": "project",
    "owner_id": 2,
