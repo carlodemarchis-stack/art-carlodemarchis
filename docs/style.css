@@ -96,7 +96,7 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .plist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(40px,7vw,96px)}
 .pitem{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
 .pitem:nth-child(even) .pitem-img{order:2}
-.pitem-img img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--soft)}
+.pitem-img img{width:100%;height:auto;background:var(--soft)}   /* natural ratio: never crop a cover (text images especially) */
 .pitem-text h3{font-weight:700;letter-spacing:-.035em;font-size:clamp(26px,3.6vw,46px);line-height:1.02;margin:0 0 14px;text-wrap:balance}
 .pitem-text p{color:#333;max-width:48ch;font-size:17px;margin:0 0 18px}
 .pitem-text .subtitle-sm{color:var(--mute);font-size:15px;margin:-6px 0 14px}
