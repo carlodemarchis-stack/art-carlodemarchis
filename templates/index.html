@@ -101,4 +101,15 @@
   </ul>
 </section>
 {% endif %}
+{% if tec and tec.links %}
+<section class="tec">
+  <div class="tec-in">
+    <a class="tec-logo" href="{{ tec.links[0][1] }}" rel="noopener"><img src="/torinoecultura.webp" width="1200" height="331" alt="Torino e Cultura" loading="lazy"></a>
+    <div class="tec-text">
+      <p>{{ tec.blurb }}</p>
+      <div class="tec-links">{% for l in tec.links %}<a class="btn-light" href="{{ l[1] }}" rel="noopener">{{ l[0] }} ↗</a>{% endfor %}</div>
+    </div>
+  </div>
+</section>
+{% endif %}
 {% endblock %}

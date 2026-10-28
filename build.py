@@ -269,6 +269,11 @@ def main():
         artist_links = json.loads(s.get("artist_links") or "{}")
     except json.JSONDecodeError:
         artist_links = {}
+    try:
+        tec = json.loads(s.get("tec_promo") or "{}")
+    except json.JSONDecodeError:
+        tec = {}
+    tec["links"] = [l for l in tec.get("links", []) if len(l) == 2 and l[1]]   # empty url = hidden
     site_imgs = imgs_for("site", 0)
     portraits = [i for i in site_imgs if i["role"] == "portrait"]     # first one is shown in b&w, the others in colour
     portrait = portraits[0] if portraits else None
@@ -287,7 +292,7 @@ def main():
     env.filters.update(redact=redact, md=md, plain=plain)
     env.globals["img"] = img
     base = s.get("base_url", "").rstrip("/")
-    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, hero_bg=hero_bg, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists, artist_links=artist_links,
+    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, hero_bg=hero_bg, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists, artist_links=artist_links, tec=tec,
                portrait=portrait, portraits=portraits, year=date.today().year, bio=md(s.get("bio", "")))
 
     def render(tpl, out, **kw):
