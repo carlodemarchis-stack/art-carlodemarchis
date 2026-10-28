@@ -29,7 +29,7 @@
   <div class="statement"><p class="muted">Work in progress — statement to follow.</p></div>
   {% endif %}
 
-  {% if site.prints_note and project.kind != 'commission' %}
+  {% if site.prints_note and project.kind not in ('commission', 'installation') %}
   <p class="prints">{{ site.prints_note }}{% if site.email %} <a href="mailto:{{ site.email }}?subject={{ project.title|plain|urlencode }}">Get in touch</a>{% endif %}</p>
   {% endif %}
 
