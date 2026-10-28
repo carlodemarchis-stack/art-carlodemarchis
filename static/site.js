@@ -41,3 +41,22 @@
     if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
   });
 })();
+
+/* "This week" alert bar: shows upcoming events that are on now or start within 7 days, rotating every 5 s. */
+(function () {
+  var bar = document.getElementById('alert');
+  if (!bar) return;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var limit = new Date(today); limit.setDate(limit.getDate() + 7);
+  var items = Array.prototype.filter.call(bar.querySelectorAll('.alert-item'), function (a) {
+    var start = new Date(a.dataset.start + 'T00:00:00'), end = new Date((a.dataset.end || a.dataset.start) + 'T00:00:00');
+    return !isNaN(start) && end >= today && start <= limit;
+  });
+  if (!items.length) return;
+  bar.hidden = false;
+  var i = 0;
+  items[0].classList.add('on');
+  if (items.length > 1) setInterval(function () {
+    items[i].classList.remove('on'); i = (i + 1) % items.length; items[i].classList.add('on');
+  }, 5000);
+})();

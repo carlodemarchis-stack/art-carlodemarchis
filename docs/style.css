@@ -35,6 +35,17 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .redact{display:inline-block;background:var(--redact);height:.78em;width:calc(var(--n,4) * .62em);vertical-align:-.04em;margin:0 .08em;border-radius:1px}
 .section-dark .redact,.hero .redact{--redact:#fff}
 
+/* this-week alert bar */
+.alert{background:#000;color:#fff;font-size:13px;line-height:1.3;display:flex;align-items:center;gap:12px;padding:8px var(--gut);border-bottom:1px solid #2a2a2a}
+.alert[hidden]{display:none}
+.alert-label{flex:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #fff;border-radius:999px;padding:2px 8px}
+.alert-items{position:relative;flex:1;min-height:1.3em}
+.alert-item{display:none;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.alert-item.on{display:block;animation:alertin .5s}
+.alert-item:hover{text-decoration:underline;text-underline-offset:3px}
+@keyframes alertin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (max-width:640px){.alert{font-size:12px;gap:8px}.alert-item{white-space:normal}}
+
 /* header */
 .top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:22px var(--gut);max-width:var(--max);margin:0 auto}
 .brand{display:block}

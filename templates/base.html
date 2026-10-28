@@ -12,7 +12,7 @@
 {% block og %}{% if hero %}<meta property="og:image" content="{{ base }}{{ hero[0].url }}">{% endif %}{% endblock %}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=1">
+<link rel="stylesheet" href="/style.css?v=2">
 {% if site.umami_website_id %}
 <!-- Umami -->
 <script>if(location.search.indexOf('noumami')>-1){try{localStorage.setItem('umami.disabled','1')}catch(e){}}</script>
@@ -22,6 +22,17 @@
 </head>
 <body class="page-{{ page }}">
 <a class="skip" href="#main">Skip to content</a>
+{% set upcoming = events|selectattr('status', 'equalto', 'upcoming')|list %}
+{% if upcoming %}
+<div class="alert" id="alert" hidden aria-live="polite">
+  <span class="alert-label">This week</span>
+  <div class="alert-items">
+    {% for e in upcoming %}
+    <a class="alert-item" href="/exhibitions/#{{ e.slug }}" data-start="{{ e.start_date }}" data-end="{{ e.end_date or e.start_date }}"><b>{{ e.when }}</b> — {{ e.title }}{% if e.venue or e.city %} · {{ e.venue }}{% if e.venue and e.city %}, {% endif %}{{ e.city }}{% endif %}</a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 <header class="top">
   <a class="brand" href="/"><span class="wordmark">{{ site.site_name }}</span><span class="tag">{{ site.tagline }}</span></a>
   <nav class="nav" aria-label="Main">
@@ -53,6 +64,6 @@
   <figure><img alt=""><figcaption></figcaption></figure>
   <button class="lb-next" aria-label="Next">›</button>
 </div>
-<script src="/site.js?v=1" defer></script>
+<script src="/site.js?v=2" defer></script>
 </body>
 </html>
