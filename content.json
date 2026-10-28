@@ -863,6 +863,15 @@
  ],
  "images": [
   {
+   "id": 247,
+   "owner_type": "project",
+   "owner_id": 12,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Quiet Chaos/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "Cover of the album Quiet Chaos (Abe Murakami)",
+   "sort_order": -1
+  },
+  {
    "id": 1,
    "owner_type": "project",
    "owner_id": 1,
@@ -966,7 +975,7 @@
    "owner_type": "project",
    "owner_id": 12,
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI Art/Quiet Chaos/quiet chaos square 1.png",
-   "role": "cover",
+   "role": "gallery",
    "caption": "",
    "sort_order": 0
   },
