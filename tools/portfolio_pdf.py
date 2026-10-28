@@ -91,6 +91,7 @@ h2{font-weight:400;font-size:11.5pt;color:#333;margin:0 0 4mm;letter-spacing:-.0
 .text p:first-child{font-weight:600}
 .text ul{margin:0 0 2.8mm;padding-left:4mm}
 .text li{margin:0 0 1mm}
+.text p.more{font-weight:600;color:#555;margin-top:2mm}
 .prints{margin:0;padding:3mm 0;font-size:9pt;color:#222;flex:none}
 /* the shared footer: URL + QR + name on every sheet */
 .foot{display:flex;align-items:center;gap:5mm;border-top:1px solid #000;padding-top:3mm;margin-top:auto;flex:none;font-size:8.5pt;color:#444;line-height:1.45}
@@ -118,12 +119,26 @@ h2{font-weight:400;font-size:11.5pt;color:#333;margin:0 0 4mm;letter-spacing:-.0
 """
 
 FIT_JS = """
+window.addEventListener('load', function () {   // after the photos have their real size
 document.querySelectorAll('.page.project').forEach(function (pg) {
   var text = pg.querySelector('.text'), fs = 9.8, ph = 118;
-  function over() { return text.scrollHeight > text.clientHeight + 1; }
-  while (over() && fs > 7.2) { fs -= 0.2; pg.style.setProperty('--fs', fs.toFixed(1) + 'pt'); }
-  while (over() && ph > 70) { ph -= 5; pg.style.setProperty('--ph', ph + 'mm'); }
-  if (over()) pg.dataset.overflow = '1';
+  // multi-column text overflows into hidden columns on the right: a paragraph placed past the box edge means overflow
+  function over() {
+    var box = text.getBoundingClientRect();
+    return Array.prototype.some.call(text.querySelectorAll('p,li'), function (el) {
+      var r = el.getBoundingClientRect(); return r.left > box.right - 2 || r.bottom > box.bottom + 2;
+    });
+  }
+  while (over() && fs > 8.4) { fs -= 0.2; pg.style.setProperty('--fs', fs.toFixed(1) + 'pt'); }
+  while (over() && ph > 88) { ph -= 4; pg.style.setProperty('--ph', ph + 'mm'); }
+  if (over()) {   // still too long: keep it readable, drop trailing paragraphs and point to the full text online
+    var more = document.createElement('p'); more.className = 'more';
+    more.textContent = 'Full text at art.carlodemarchis.it/projects/' + pg.dataset.slug + '/';
+    var blocks = Array.prototype.slice.call(text.children);
+    while (over() && blocks.length > 2) { text.removeChild(blocks.pop()); if (!more.parentNode) text.appendChild(more); }
+    if (over()) pg.dataset.overflow = '1';
+  }
+});
 });
 """
 
