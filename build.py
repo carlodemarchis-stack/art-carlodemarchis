@@ -18,6 +18,7 @@ from datetime import date
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from markupsafe import Markup
+from PIL import Image, ImageOps
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT, "studio"))
@@ -25,33 +26,61 @@ import studio  # noqa: E402
 
 DOCS = os.path.join(ROOT, "docs")
 IMG = os.path.join(DOCS, "img")
-LARGE, MEDIUM, THUMB, SMALL = 2000, 1200, 900, 480
-QUALITY = "82"
+SIZES = {"url": 2000, "medium": 1200, "thumb": 900, "small": 480}   # key -> longest side (px)
+SUFFIX = {"url": "", "medium": "-m", "thumb": "-s", "small": "-xs"}
+WEBP_QUALITY = 82
+OG_SIZE, OG_QUALITY = 1200, 85            # a JPEG copy of cover/hero images for og:image (LinkedIn/X do not read WebP)
+Image.MAX_IMAGE_PIXELS = None
 NO_IMAGES = "--no-images" in sys.argv
 
 
 # ---------------------------------------------------------------- images
-def sips_dims(path):
-    r = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", path], capture_output=True, text=True)
-    m = re.findall(r"pixel(Width|Height): (\d+)", r.stdout)
-    d = {k: int(v) for k, v in m}
-    return d.get("Width", 0), d.get("Height", 0)
+def load_source(src):
+    """Open any source with Pillow; HEIC goes through sips -> PNG first (Pillow has no HEIF decoder here)."""
+    if src.lower().endswith((".heic", ".heif")):
+        tmp = os.path.join(studio.CACHE, "heic-" + hashlib.sha1(src.encode()).hexdigest()[:10] + ".png")
+        if not os.path.exists(tmp) or os.path.getmtime(tmp) < os.path.getmtime(src):
+            os.makedirs(studio.CACHE, exist_ok=True)
+            r = subprocess.run(["sips", "-s", "format", "png", src, "--out", tmp], capture_output=True, text=True)
+            if r.returncode != 0:
+                raise RuntimeError(r.stderr.strip())
+        src = tmp
+    im = Image.open(src)
+    im = ImageOps.exif_transpose(im)
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        bg = Image.new("RGB", im.size, (255, 255, 255))
+        bg.paste(im, mask=im.split()[-1])
+        im = bg
+    elif im.mode != "RGB":
+        im = im.convert("RGB")
+    return im
 
 
-def derive(src, dst, maxpx):
-    if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
-        return False
-    os.makedirs(os.path.dirname(dst), exist_ok=True)
-    r = subprocess.run(["sips", "-Z", str(maxpx), "-s", "format", "jpeg", "-s", "formatOptions", QUALITY,
-                        src, "--out", dst], capture_output=True, text=True)
-    if r.returncode != 0 or not os.path.exists(dst):
-        print(f"  ! sips could not convert {src}: {r.stderr.strip().splitlines()[0] if r.stderr.strip() else 'unknown error'}")
-        return False
-    return True
+def derive_all(src, targets):
+    """targets: {path: longest_side}. Decode once, write every missing/stale file. Returns number written."""
+    stale = {p: n for p, n in targets.items()
+             if not (os.path.exists(p) and os.path.getmtime(p) >= os.path.getmtime(src))}
+    if not stale:
+        return 0
+    try:
+        im = load_source(src)
+    except Exception as e:  # unreadable / iCloud-evicted file: warn, the record is skipped
+        print(f"  ! cannot read {src}: {e}")
+        return 0
+    os.makedirs(os.path.dirname(next(iter(stale))), exist_ok=True)
+    for path, n in sorted(stale.items(), key=lambda kv: -kv[1]):   # largest first, each from the full decode
+        out = im.copy()
+        out.thumbnail((n, n), Image.LANCZOS)
+        if path.endswith(".webp"):
+            out.save(path, "WEBP", quality=WEBP_QUALITY, method=5)
+        else:
+            out.save(path, "JPEG", quality=OG_QUALITY, optimize=True, progressive=True)
+    return len(stale)
 
 
 def process_images(images):
-    """Add url/thumb/w/h to every image record; returns the set of files kept."""
+    """Add url/medium/thumb/small (WebP) + og (JPEG, covers/heroes only) + w/h to every record; returns files kept."""
     keep, made = set(), 0
     for im in images:
         src = im["path"]
@@ -61,29 +90,31 @@ def process_images(images):
             continue
         key = f"{im['id']}-{hashlib.sha1(src.encode()).hexdigest()[:6]}"
         folder = os.path.join(IMG, im["owner_type"])
-        large, medium, thumb, small = (os.path.join(folder, key + ext) for ext in (".jpg", "-m.jpg", "-s.jpg", "-xs.jpg"))
+        files = {k: os.path.join(folder, f"{key}{SUFFIX[k]}.webp") for k in SIZES}
+        targets = {files[k]: SIZES[k] for k in SIZES}
+        og = None
+        if im["role"] in ("cover", "hero"):
+            og = os.path.join(folder, f"{key}-og.jpg")
+            targets[og] = OG_SIZE
         if not NO_IMAGES:
-            made += derive(src, large, LARGE)
-            derive(src, medium, MEDIUM)
-            derive(src, thumb, THUMB)
-            derive(src, small, SMALL)
-        if not os.path.exists(large):
+            made += derive_all(src, targets)
+        if not os.path.exists(files["url"]):
             im["missing"] = True
             continue
-        im["w"], im["h"] = sips_dims(large)
-        im["url"] = f"/img/{im['owner_type']}/{key}.jpg"
-        im["thumb"] = f"/img/{im['owner_type']}/{key}-s.jpg"
-        im["small"] = f"/img/{im['owner_type']}/{key}-xs.jpg"
-        im["medium"] = f"/img/{im['owner_type']}/{key}-m.jpg"
+        with Image.open(files["url"]) as probe:
+            im["w"], im["h"] = probe.size
+        for k in SIZES:
+            im[k] = f"/img/{im['owner_type']}/{key}{SUFFIX[k]}.webp"
+        im["og"] = f"/img/{im['owner_type']}/{key}-og.jpg" if og and os.path.exists(og) else im["url"]
         im["name"] = os.path.basename(src)
-        keep.update({large, medium, thumb, small})
+        keep.update(targets)
     if not NO_IMAGES:
         for dp, _, fn in os.walk(IMG):
             for f in fn:
                 full = os.path.join(dp, f)
                 if full not in keep:
                     os.remove(full)
-    print(f"  images: {len(keep)//4} in use, {made} newly resized")
+    print(f"  images: {len(images) - sum(1 for i in images if i.get('missing'))} in use, {made} files written")
 
 
 # ---------------------------------------------------------------- text helpers

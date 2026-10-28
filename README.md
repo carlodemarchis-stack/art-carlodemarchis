@@ -29,8 +29,9 @@ In the admin: edit projects / photobooks / events, add images straight from
 `~/Documents/_cdm/_carlo/Art` (file picker, previews), set the cover, reorder,
 caption, keep per-record notes & to-dos, then **Build site**.
 
-`Build` = `python3 build.py`: resizes every referenced image (2000 px large,
-900 px thumb, JPEG 82, cached — only new or changed sources are processed),
+`Build` = `python3 build.py`: resizes every referenced image with Pillow into WebP
+(2000 / 1200 / 900 / 480 px, quality 82; covers and heroes also get a 1200 px JPEG
+for social previews; cached — only new or changed sources are re-encoded),
 renders the pages, writes `docs/sitemap.xml`, `.nojekyll`, `CNAME` (if a domain
 is set) and refreshes `content.json`. Then:
 
@@ -73,5 +74,6 @@ added with the standard `?noumami` opt-out line.
 
 ## Requirements
 
-macOS (uses `sips`), system `python3` with `jinja2` (present on this Mac). No
-other dependencies, no node, no build tool.
+macOS, system `python3` with `jinja2` and `Pillow` (both present on this Mac;
+`pip3 install --user pillow` otherwise). `sips` is used only to read HEIC files
+and for the studio's preview thumbnails. No node, no build tool.

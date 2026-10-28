@@ -9,7 +9,7 @@
 <meta property="og:site_name" content="{{ site.site_name }}">
 <meta property="og:title" content="{{ self.title()|plain }}">
 <meta property="og:description" content="{{ self.desc() }}">
-{% block og %}{% if hero %}<meta property="og:image" content="{{ base }}{{ hero[0].url }}">{% endif %}{% endblock %}
+{% block og %}{% if hero %}<meta property="og:image" content="{{ base }}{{ hero[0].og }}">{% endif %}{% endblock %}
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/style.css?v=9">

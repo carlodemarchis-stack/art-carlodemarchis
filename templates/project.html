@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ project.title|plain }} — {{ site.site_name }}{% endblock %}
 {% block desc %}{{ project.excerpt or (project.title|plain) }}{% endblock %}
-{% block og %}{% if project.cover %}<meta property="og:image" content="{{ base }}{{ project.cover.url }}">{% endif %}{% endblock %}
+{% block og %}{% if project.cover %}<meta property="og:image" content="{{ base }}{{ project.cover.og }}">{% endif %}{% endblock %}
 {% block content %}
 <article class="project {{ 'color' if project.palette == 'color' else 'bw' }}">
   <header class="phead">
