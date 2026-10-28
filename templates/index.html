@@ -7,11 +7,15 @@
     <p class="hero-sub">AI-generated black & white photography for storytelling and social provocation — plus new work in colour.</p>
     <a class="btn-light" href="/projects/">See the projects</a>
   </div>
-  <div class="mosaic" aria-hidden="true">
-    {% for im in hero[:4] %}
-    <img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}">
+  <div class="mosaic" id="mosaic">
+    {% for t in tiles %}
+    <a class="tile" href="{{ t.url }}" data-slug="{{ t.slug }}" data-palette="{{ 'color' if loop.index is even else 'bw' }}" aria-label="{{ t.title }}">
+      <img class="cur" src="{{ t.thumb }}" width="{{ t.w }}" height="{{ t.h }}" alt="{{ t.title }}">
+      <img class="nxt" src="{{ t.thumb }}" width="{{ t.w }}" height="{{ t.h }}" alt="" aria-hidden="true">
+    </a>
     {% endfor %}
   </div>
+  <script type="application/json" id="mosaic-pool">{{ pool_json|safe }}</script>
 </section>
 
 {% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
@@ -90,7 +94,7 @@
 <section class="section">
   <div class="section-head"><h2>Exhibitions</h2><a class="more" href="/exhibitions/">All exhibitions</a></div>
   <ul class="elist">
-    {% for e in events[:4] %}
+    {% for e in events %}
     <li><a href="/exhibitions/#{{ e.slug }}"><span class="when">{{ e.when }}</span><span class="what">{{ e.title }}</span><span class="where">{{ e.venue }}{% if e.venue and e.city %}, {% endif %}{{ e.city }}</span></a></li>
     {% endfor %}
   </ul>

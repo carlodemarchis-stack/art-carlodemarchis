@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS events (
   city        TEXT NOT NULL DEFAULT '',
   start_date  TEXT NOT NULL DEFAULT '',           -- YYYY-MM-DD
   end_date    TEXT NOT NULL DEFAULT '',
+  time        TEXT NOT NULL DEFAULT '',           -- free text, e.g. 'from 7 pm'
   status      TEXT NOT NULL DEFAULT 'planned',    -- planned | upcoming | past | cancelled
   description TEXT NOT NULL DEFAULT '',
   url         TEXT NOT NULL DEFAULT '',

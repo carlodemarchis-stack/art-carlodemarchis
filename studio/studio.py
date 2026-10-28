@@ -38,7 +38,7 @@ TABLES = {
                  "excerpt", "statement", "links", "sort_order", "featured"],
     "books": ["slug", "title", "subtitle", "year", "project_id", "status", "buy_url",
               "buy_label", "isbn", "format", "pages", "description", "sort_order"],
-    "events": ["slug", "title", "kind", "venue", "city", "start_date", "end_date",
+    "events": ["slug", "title", "kind", "venue", "city", "start_date", "end_date", "time",
                "status", "description", "url", "project_ids", "sort_order"],
     "albums": ["slug", "artist", "title", "year", "kind", "status", "listen_url", "description", "sort_order"],
     "images": ["owner_type", "owner_id", "path", "role", "caption", "sort_order"],

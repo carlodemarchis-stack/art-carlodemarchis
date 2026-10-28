@@ -147,6 +147,16 @@ def fmt_dates(start, end):
     return f"{a[2]} {MONTHS[a[1]]} {a[0]} – {b[2]} {MONTHS[b[1]]} {b[0]}"
 
 
+def bar_when(start, time_text):
+    """'Thursday 29 October, from 7 pm' for the This-week bar."""
+    try:
+        d = date(*[int(x) for x in start.split("-")[:3]])
+    except (ValueError, TypeError):
+        return time_text
+    out = f"{d.strftime('%A')} {d.day} {MONTHS[d.month]}"
+    return f"{out}, {time_text}" if time_text else out
+
+
 def plain(s):
     return REDACT.sub("___", str(s))
 
@@ -198,6 +208,7 @@ def main():
             ids = []
         e["projects"] = [by_id[i] for i in ids if i in by_id]
         e["when"] = fmt_dates(e["start_date"], e["end_date"])
+        e["when_bar"] = bar_when(e["start_date"], e.get("time", ""))
     events.sort(key=lambda e: e["start_date"], reverse=True)
     for p in projects:
         p["events"] = [e for e in events if p in e["projects"]]
@@ -209,16 +220,20 @@ def main():
             artists.append(a["artist"])
     site_imgs = imgs_for("site", 0)
     portrait = next((i for i in site_imgs if i["role"] == "portrait"), None)
-    feat = [p for p in projects if p["featured"] and p["cover"]]
-    bw, col = [p["cover"] for p in feat if p["palette"] != "color"], [p["cover"] for p in feat if p["palette"] == "color"]
-    mixed = [x for pair in zip(bw, col) for x in pair] + bw[len(col):] + col[len(bw):]   # alternate b&w / colour
-    hero = [i for i in site_imgs if i["role"] == "hero"] or mixed or [p["cover"] for p in projects if p["cover"]][:8]
+    # home mosaic: featured projects (2 = shown first, 1 = in the rotation pool), two b&w + two colour tiles
+    feat = sorted([p for p in projects if p["featured"] and p["cover"]], key=lambda p: (-p["featured"], p["sort_order"]))
+    def tile(p):
+        c = p["hero"] or p["cover"]     # the project's own page image, never the list thumbnail (e.g. an album cover)
+        return {"slug": p["slug"], "title": plain(p["title"]), "url": f"/projects/{p['slug']}/", "thumb": c["thumb"], "w": c["w"], "h": c["h"]}
+    pool = {"bw": [tile(p) for p in feat if p["palette"] != "color"], "color": [tile(p) for p in feat if p["palette"] == "color"]}
+    tiles = [t for pair in zip(pool["bw"][:2], pool["color"][:2]) for t in pair] or [tile(p) for p in projects if p["cover"]][:4]
+    hero = [p["cover"] for p in feat][:1] or [p["cover"] for p in projects if p["cover"]][:1]   # for og:image
 
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")),
                       autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
     env.filters.update(redact=redact, md=md, plain=plain)
     base = s.get("base_url", "").rstrip("/")
-    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, albums=albums, artists=artists,
+    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists,
                portrait=portrait, year=date.today().year, bio=md(s.get("bio", "")))
 
     def render(tpl, out, **kw):

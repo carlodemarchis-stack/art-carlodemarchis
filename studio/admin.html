@@ -100,7 +100,7 @@ const FIELDS = {
     ['title','text'],['subtitle','text'],['slug','text','url path, e.g. whos-missing'],['year','text','e.g. 2024 or 2024–2025'],
     ['kind','select',['series','photobook','installation','video','commission'],'commission = shown as a special project'],['palette','select',['bw','color']],
     ['status','select',['draft','wip','published'],'draft = hidden · wip = shown as work in progress · published'],
-    ['featured','check','show in the home hero mosaic'],['sort_order','number'],
+    ['featured','select',['0','1','2'],'home mosaic: 0 = no · 1 = in the rotation pool · 2 = one of the four shown first'],['sort_order','number'],
     ['excerpt','textarea','one or two sentences for the home page'],
     ['statement','bigtext','blank line = new paragraph · "- " = bullet · **bold**'],
     ['links','json','[{"label":"Read on Medium","url":"https://…"}]'],
@@ -118,7 +118,7 @@ const FIELDS = {
   ],
   events: [
     ['title','text'],['slug','text'],['kind','select',['exhibition','fair','talk','book_launch','residency','other']],
-    ['venue','text'],['city','text'],['start_date','text','YYYY-MM-DD'],['end_date','text','YYYY-MM-DD'],
+    ['venue','text'],['city','text'],['start_date','text','YYYY-MM-DD'],['end_date','text','YYYY-MM-DD'],['time','text','free text shown in the This-week bar, e.g. from 7 pm'],
     ['status','select',['planned','upcoming','past','cancelled'],'planned = hidden from the site'],
     ['url','text'],['project_ids','json','[1, 3] — ids of the projects shown'],['sort_order','number'],['description','textarea'],
   ],
