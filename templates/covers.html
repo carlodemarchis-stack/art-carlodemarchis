@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Album covers — {{ site.site_name }}{% endblock %}
+{% block desc %}Cover art for the music released as {{ artists|join(', ') }}.{% endblock %}
+{% block og %}{% if albums %}<meta property="og:image" content="{{ base }}{{ albums[0].cover.url }}">{% endif %}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="section-head"><h1 class="h-page">Album covers</h1><span class="count">{{ albums|length }}</span></div>
+  <p class="lead">The same images, one square at a time: cover art for the music released under {{ artists|length }} names.</p>
+  {% for artist in artists %}
+  <div class="artist-head"><h2>{{ artist }}</h2><span class="count">{{ albums|selectattr('artist', 'equalto', artist)|list|length }}</span></div>
+  <div class="cgrid">
+    {% for a in albums if a.artist == artist %}
+    <article class="ccard" id="{{ a.slug }}">
+      <a href="{{ a.cover.url }}" data-lightbox="covers-{{ a.slug }}" data-caption="{{ a.artist }} — {{ a.title }}{% if a.year %} ({{ a.year }}){% endif %}">
+        <img src="{{ a.cover.thumb }}" width="{{ a.cover.w }}" height="{{ a.cover.h }}" alt="{{ a.artist }} — {{ a.title }}" loading="lazy">
+      </a>
+      <span class="ccard-t">{{ a.title }}</span>
+      <span class="ccard-m">{{ a.kind }}{% if a.year %} · {{ a.year }}{% endif %}{% if a.listen_url %} · <a href="{{ a.listen_url }}" rel="noopener">listen ↗</a>{% endif %}</span>
+      {% if a.description %}<span class="ccard-m">{{ a.description }}</span>{% endif %}
+      {% if a.gallery|length > 1 %}
+      <div class="cover-alt">
+        {% for im in a.gallery %}{% if im != a.cover %}<a href="{{ im.url }}" data-lightbox="covers-{{ a.slug }}" data-caption="{{ a.artist }} — {{ a.title }}{% if im.caption %} · {{ im.caption }}{% endif %}"><img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="lazy"></a>{% endif %}{% endfor %}
+      </div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

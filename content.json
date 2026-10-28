@@ -452,6 +452,316 @@
    "updated_at": "2026-10-28 04:54:11"
   }
  ],
+ "albums": [
+  {
+   "id": 1,
+   "slug": "100-operai-elettrici-something",
+   "artist": "100 Operai Elettrici",
+   "title": "Something",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 10,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 2,
+   "slug": "abe-murakami-city-vibes",
+   "artist": "Abe Murakami",
+   "title": "City Vibes",
+   "year": "2025",
+   "kind": "album",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 20,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 3,
+   "slug": "abe-murakami-ddoce-casa",
+   "artist": "Abe Murakami",
+   "title": "Ddoce casa",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 30,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 4,
+   "slug": "abe-murakami-for-four-giants",
+   "artist": "Abe Murakami",
+   "title": "For Four Giants",
+   "year": "2025",
+   "kind": "album",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 40,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 5,
+   "slug": "abe-murakami-fragments",
+   "artist": "Abe Murakami",
+   "title": "Fragments",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 50,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 6,
+   "slug": "abe-murakami-hidden-promises",
+   "artist": "Abe Murakami",
+   "title": "Hidden Promises",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 60,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 7,
+   "slug": "abe-murakami-howl",
+   "artist": "Abe Murakami",
+   "title": "Howl",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 70,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 8,
+   "slug": "abe-murakami-kissa-hours",
+   "artist": "Abe Murakami",
+   "title": "Kissa Hours",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 80,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 9,
+   "slug": "abe-murakami-late-night-transmissions",
+   "artist": "Abe Murakami",
+   "title": "Late Night Transmissions",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 90,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 10,
+   "slug": "abe-murakami-one-message",
+   "artist": "Abe Murakami",
+   "title": "One Message",
+   "year": "2025",
+   "kind": "album",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 100,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 11,
+   "slug": "abe-murakami-quiet-chaos",
+   "artist": "Abe Murakami",
+   "title": "Quiet Chaos",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 110,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 12,
+   "slug": "abe-murakami-subway-dreams",
+   "artist": "Abe Murakami",
+   "title": "Subway Dreams",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 120,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 13,
+   "slug": "abe-murakami-syntethic",
+   "artist": "Abe Murakami",
+   "title": "Syntethic",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 130,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 14,
+   "slug": "abe-murakami-the-sincere-sessions",
+   "artist": "Abe Murakami",
+   "title": "The Sincere Sessions",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 140,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 15,
+   "slug": "abe-murakami-wherever-the-needle-drops",
+   "artist": "Abe Murakami",
+   "title": "Wherever the needle drops",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 150,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 16,
+   "slug": "an-ignorant-soul-house-of-lights",
+   "artist": "An Ignorant Soul",
+   "title": "House of Lights",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 160,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 17,
+   "slug": "an-ignorant-soul-love-at-first-sight",
+   "artist": "An Ignorant Soul",
+   "title": "Love at first sight",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 170,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 18,
+   "slug": "an-ignorant-soul-skin-we-share",
+   "artist": "An Ignorant Soul",
+   "title": "Skin We Share",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 180,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 19,
+   "slug": "an-ignorant-soul-summer-shades",
+   "artist": "An Ignorant Soul",
+   "title": "Summer Shades",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 190,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 20,
+   "slug": "an-ignorant-soul-canenero",
+   "artist": "An Ignorant Soul",
+   "title": "canenero",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 200,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 21,
+   "slug": "nuru-odu-awiro-fight-poverty-not-poetry",
+   "artist": "Nuru Odu Awiro",
+   "title": "Fight poverty not poetry",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 210,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 22,
+   "slug": "the-night-i-swam-with-hope",
+   "artist": "The Night I Swam",
+   "title": "With Hope",
+   "year": "2025",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 220,
+   "created_at": "2026-10-28 06:09:11",
+   "updated_at": "2026-10-28 06:09:11"
+  }
+ ],
  "images": [
   {
    "id": 1,
@@ -688,6 +998,204 @@
    "sort_order": 0
   },
   {
+   "id": 173,
+   "owner_type": "album",
+   "owner_id": 1,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Something/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 175,
+   "owner_type": "album",
+   "owner_id": 2,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/City Vibes - Album/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 176,
+   "owner_type": "album",
+   "owner_id": 3,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Ddoce casa/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 177,
+   "owner_type": "album",
+   "owner_id": 4,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/For Four Giants/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 182,
+   "owner_type": "album",
+   "owner_id": 5,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Fragments/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 183,
+   "owner_type": "album",
+   "owner_id": 6,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Hidden Promises/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 185,
+   "owner_type": "album",
+   "owner_id": 7,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Howl/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 186,
+   "owner_type": "album",
+   "owner_id": 8,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Kissa Hours/Cover/Cover/cover.001.png",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 189,
+   "owner_type": "album",
+   "owner_id": 9,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Late Night Transmissions/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 191,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 197,
+   "owner_type": "album",
+   "owner_id": 11,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Quiet Chaos/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 198,
+   "owner_type": "album",
+   "owner_id": 12,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Subway Dreams/Cover/Subway Dreams/Subway Dreams.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 199,
+   "owner_type": "album",
+   "owner_id": 13,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Syntethic/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 200,
+   "owner_type": "album",
+   "owner_id": 14,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/The Sincere Sessions/Cover/The Sincere Sessions/The Sincere Sessions.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 202,
+   "owner_type": "album",
+   "owner_id": 15,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Wherever the needle drops/Cover/Wherever the needle drops/Wherever the needle drops.001.png",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 204,
+   "owner_type": "album",
+   "owner_id": 16,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 207,
+   "owner_type": "album",
+   "owner_id": 17,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/Love at first sight/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 208,
+   "owner_type": "album",
+   "owner_id": 18,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/Skin We Share/Cover/Cover/cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 209,
+   "owner_type": "album",
+   "owner_id": 19,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/Summer Shades/Cover/Cover/cover.001.png",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 210,
+   "owner_type": "album",
+   "owner_id": 20,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/canenero/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 212,
+   "owner_type": "album",
+   "owner_id": 21,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Nuru Odu Awiro/Released/Fight poverty not poetry/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 213,
+   "owner_type": "album",
+   "owner_id": 22,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/The Night I Swam/Released/With Hope/Cover/Cover/Cover.001.jpeg",
+   "role": "cover",
+   "caption": "",
+   "sort_order": 0
+  },
+  {
    "id": 15,
    "owner_type": "project",
    "owner_id": 2,
@@ -859,6 +1367,96 @@
    "sort_order": 1
   },
   {
+   "id": 174,
+   "owner_type": "album",
+   "owner_id": 1,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Something/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 178,
+   "owner_type": "album",
+   "owner_id": 4,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/For Four Giants/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 184,
+   "owner_type": "album",
+   "owner_id": 6,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Hidden Promises/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 187,
+   "owner_type": "album",
+   "owner_id": 8,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Kissa Hours/Cover/Cover/cover.002.png",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 190,
+   "owner_type": "album",
+   "owner_id": 9,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Late Night Transmissions/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 192,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 201,
+   "owner_type": "album",
+   "owner_id": 14,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/The Sincere Sessions/Cover/The Sincere Sessions/The Sincere Sessions.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 203,
+   "owner_type": "album",
+   "owner_id": 15,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Wherever the needle drops/Cover/Wherever the needle drops/Wherever the needle drops.002.png",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 205,
+   "owner_type": "album",
+   "owner_id": 16,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
+   "id": 211,
+   "owner_type": "album",
+   "owner_id": 20,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/canenero/Cover/Cover/Cover.002.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 1
+  },
+  {
    "id": 3,
    "owner_type": "project",
    "owner_id": 1,
@@ -1027,6 +1625,42 @@
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/Liquida 2024/IMG_1208.jpg",
    "role": "gallery",
    "caption": "",
+   "sort_order": 2
+  },
+  {
+   "id": 179,
+   "owner_type": "album",
+   "owner_id": 4,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/For Four Giants/Cover/Cover/Cover.003.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 2
+  },
+  {
+   "id": 188,
+   "owner_type": "album",
+   "owner_id": 8,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/Kissa Hours/Cover/Cover/cover.003.png",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 2
+  },
+  {
+   "id": 193,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.003.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 2
+  },
+  {
+   "id": 206,
+   "owner_type": "album",
+   "owner_id": 16,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.003.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
    "sort_order": 2
   },
   {
@@ -1210,6 +1844,24 @@
    "sort_order": 3
   },
   {
+   "id": 180,
+   "owner_type": "album",
+   "owner_id": 4,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/For Four Giants/Cover/Cover/Cover.004.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 3
+  },
+  {
+   "id": 194,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.004.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 3
+  },
+  {
    "id": 5,
    "owner_type": "project",
    "owner_id": 1,
@@ -1372,6 +2024,24 @@
    "sort_order": 4
   },
   {
+   "id": 181,
+   "owner_type": "album",
+   "owner_id": 4,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/For Four Giants/Cover/Cover/Cover.005.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 4
+  },
+  {
+   "id": 195,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.005.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
+   "sort_order": 4
+  },
+  {
    "id": 6,
    "owner_type": "project",
    "owner_id": 1,
@@ -1504,6 +2174,15 @@
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI Art/protest/midjourney_session (1)/halftone_dots_pattern_black_and_white_photo_of_people_protest_82649b5f-0470-43de-a143-5f545d944e7f_1.png",
    "role": "gallery",
    "caption": "",
+   "sort_order": 5
+  },
+  {
+   "id": 196,
+   "owner_type": "album",
+   "owner_id": 10,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.006.jpeg",
+   "role": "gallery",
+   "caption": "back / alternate",
    "sort_order": 5
   },
   {
@@ -2134,6 +2813,182 @@
    "body": "Statement drafted by Claude on 2026-10-28 — review and edit in your own words.",
    "done": 0,
    "created_at": "2026-10-28 05:25:47"
+  },
+  {
+   "id": 22,
+   "owner_type": "album",
+   "owner_id": 1,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 23,
+   "owner_type": "album",
+   "owner_id": 2,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 24,
+   "owner_type": "album",
+   "owner_id": 3,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 25,
+   "owner_type": "album",
+   "owner_id": 4,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 26,
+   "owner_type": "album",
+   "owner_id": 5,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 27,
+   "owner_type": "album",
+   "owner_id": 6,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 28,
+   "owner_type": "album",
+   "owner_id": 7,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 29,
+   "owner_type": "album",
+   "owner_id": 8,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 30,
+   "owner_type": "album",
+   "owner_id": 9,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 31,
+   "owner_type": "album",
+   "owner_id": 10,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 32,
+   "owner_type": "album",
+   "owner_id": 11,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 33,
+   "owner_type": "album",
+   "owner_id": 12,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 34,
+   "owner_type": "album",
+   "owner_id": 13,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 35,
+   "owner_type": "album",
+   "owner_id": 14,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 36,
+   "owner_type": "album",
+   "owner_id": 15,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 37,
+   "owner_type": "album",
+   "owner_id": 16,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 38,
+   "owner_type": "album",
+   "owner_id": 17,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 39,
+   "owner_type": "album",
+   "owner_id": 18,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 40,
+   "owner_type": "album",
+   "owner_id": 19,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 41,
+   "owner_type": "album",
+   "owner_id": 20,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 42,
+   "owner_type": "album",
+   "owner_id": 21,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
+  },
+  {
+   "id": 43,
+   "owner_type": "album",
+   "owner_id": 22,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 06:09:11"
   }
  ]
 }

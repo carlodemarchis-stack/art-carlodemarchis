@@ -47,6 +47,7 @@ GitHub Pages is configured to serve the `docs/` folder of `main`.
 | projects | series / photobook / installation / video; palette bw or color  | `published` and `wip` are shown; `draft` hidden |
 | books    | photobooks, linked to a project, with a buy link                | everything except `draft`            |
 | events   | exhibitions, fairs, talks, launches                             | `upcoming` and `past`; `planned` hidden |
+| albums   | album covers for the music releases (artist, title, listen link) | `released` only                      |
 | images   | one row per image: hi-res source path + role (cover/gallery/hero/portrait) | — |
 | notes    | free-form to-dos attached to any record (or the site)           | never published                      |
 
@@ -55,6 +56,9 @@ Titles may contain `▇` characters: runs of them render as black redaction bars
 
 Statements use a tiny markdown: blank line = paragraph, `- ` = bullet,
 `## ` = heading, `**bold**`, `[link](https://…)`.
+
+`python3 studio/seed_albums.py` adds any new release found under
+`Art/AI music/<Artist>/Released/<Title>/Cover/Cover/` without touching existing rows.
 
 ## Re-seeding
 

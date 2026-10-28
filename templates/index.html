@@ -48,6 +48,20 @@
 </section>
 {% endif %}
 
+{% if albums %}
+<section class="section">
+  <div class="section-head"><h2>Album covers</h2><a class="more" href="/covers/">All covers</a></div>
+  <div class="cgrid home">
+    {% for a in albums[:6] %}
+    <a class="ccard" href="/covers/#{{ a.slug }}">
+      <img src="{{ a.cover.thumb }}" width="{{ a.cover.w }}" height="{{ a.cover.h }}" alt="{{ a.artist }} — {{ a.title }}" loading="lazy">
+      <span class="ccard-t">{{ a.title }}</span><span class="ccard-m">{{ a.artist }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {% if events %}
 <section class="section">
   <div class="section-head"><h2>Exhibitions</h2><a class="more" href="/exhibitions/">All exhibitions</a></div>

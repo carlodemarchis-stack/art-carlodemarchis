@@ -40,10 +40,11 @@ TABLES = {
               "buy_label", "isbn", "format", "pages", "description", "sort_order"],
     "events": ["slug", "title", "kind", "venue", "city", "start_date", "end_date",
                "status", "description", "url", "project_ids", "sort_order"],
+    "albums": ["slug", "artist", "title", "year", "kind", "status", "listen_url", "description", "sort_order"],
     "images": ["owner_type", "owner_id", "path", "role", "caption", "sort_order"],
     "notes": ["owner_type", "owner_id", "body", "done"],
 }
-TIMESTAMPED = {"projects", "books", "events"}
+TIMESTAMPED = {"projects", "books", "events", "albums"}
 
 DEFAULT_SETTINGS = {
     "site_name": "carlodemarchis",
@@ -276,7 +277,7 @@ class Handler(BaseHTTPRequestHandler):
             t, iid = parts[1], int(parts[2])
             con = connect()
             con.execute(f"DELETE FROM {t} WHERE id=?", (iid,))
-            if t in ("projects", "books", "events"):
+            if t in ("projects", "books", "events", "albums"):
                 con.execute("DELETE FROM images WHERE owner_type=? AND owner_id=?", (t[:-1], iid))
                 con.execute("DELETE FROM notes WHERE owner_type=? AND owner_id=?", (t[:-1], iid))
             con.commit()

@@ -160,6 +160,7 @@ def main():
     visible = {("project", p["id"]) for p in data["projects"] if p["status"] in ("published", "wip")}
     visible |= {("book", b["id"]) for b in data["books"] if b["status"] != "draft"}
     visible |= {("event", e["id"]) for e in data["events"] if e["status"] in ("upcoming", "past")}
+    visible |= {("album", a["id"]) for a in data.get("albums", []) if a["status"] == "released"}
     images = [i for i in data["images"] if i["owner_type"] == "site" or (i["owner_type"], i["owner_id"]) in visible]
     os.makedirs(IMG, exist_ok=True)
     process_images(images)
@@ -199,6 +200,12 @@ def main():
     events.sort(key=lambda e: e["start_date"], reverse=True)
     for p in projects:
         p["events"] = [e for e in events if p in e["projects"]]
+    albums = [with_images(a, "album") for a in data.get("albums", []) if a["status"] == "released"]
+    albums = [a for a in albums if a["cover"]]
+    artists = []
+    for a in albums:
+        if a["artist"] not in artists:
+            artists.append(a["artist"])
     site_imgs = imgs_for("site", 0)
     portrait = next((i for i in site_imgs if i["role"] == "portrait"), None)
     hero = [i for i in site_imgs if i["role"] == "hero"] or \
@@ -209,7 +216,7 @@ def main():
                       autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)
     env.filters.update(redact=redact, md=md, plain=plain)
     base = s.get("base_url", "").rstrip("/")
-    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero,
+    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, albums=albums, artists=artists,
                portrait=portrait, year=date.today().year, bio=md(s.get("bio", "")))
 
     def render(tpl, out, **kw):
@@ -230,6 +237,7 @@ def main():
     render("books.html", "photobooks/index.html", page="books")
     render("events.html", "exhibitions/index.html", page="events")
     render("about.html", "about/index.html", page="about")
+    render("covers.html", "covers/index.html", page="covers")
     render("404.html", "404.html", page="404")
 
     # static assets, GitHub Pages plumbing
@@ -241,12 +249,12 @@ def main():
         open(cname, "w").write(s["domain"].strip() + "\n")
     elif os.path.exists(cname):
         os.remove(cname)
-    urls = ["/", "/projects/", "/photobooks/", "/exhibitions/", "/about/"] + [f"/projects/{p['slug']}/" for p in projects]
+    urls = ["/", "/projects/", "/photobooks/", "/exhibitions/", "/covers/", "/about/"] + [f"/projects/{p['slug']}/" for p in projects]
     with open(os.path.join(DOCS, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                 + "".join(f"  <url><loc>{base}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
     studio.export_json()
-    print(f"build: {len(projects)} projects, {len(books)} books, {len(events)} events -> {DOCS}")
+    print(f"build: {len(projects)} projects, {len(books)} books, {len(events)} events, {len(albums)} covers -> {DOCS}")
 
 
 if __name__ == "__main__":

@@ -128,6 +128,19 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .book-pages img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--soft)}
 @media (max-width:700px){.book{grid-template-columns:1fr}}
 
+/* album covers */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px 18px}
+.cgrid.home{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.ccard img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--soft);box-shadow:0 14px 34px -18px rgba(0,0,0,.5);transition:transform .2s}
+.ccard:hover img{transform:translateY(-3px)}
+.ccard-t{display:block;font-weight:700;letter-spacing:-.02em;font-size:16px;line-height:1.2;margin-top:10px}
+.ccard-m{display:block;font-size:13px;color:var(--mute);margin-top:2px}
+.artist-head{display:flex;align-items:baseline;gap:14px;margin:48px 0 18px}
+.artist-head h2{font-weight:700;letter-spacing:-.03em;font-size:clamp(24px,3vw,34px);margin:0}
+.artist-head:first-of-type{margin-top:0}
+.cover-alt{display:flex;gap:6px;margin-top:8px}
+.cover-alt img{width:44px;height:44px;object-fit:cover}
+
 /* exhibitions */
 .elist{list-style:none;margin:0;padding:0}
 .elist li a{display:grid;grid-template-columns:200px 1fr 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}

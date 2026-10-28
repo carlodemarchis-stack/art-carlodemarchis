@@ -28,8 +28,8 @@ main{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 46px)}
 #list .tools{padding:10px 14px;display:flex;gap:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
 #edit{padding:18px 24px 60px;overflow:auto}
 .pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:10px;background:#eee;text-transform:uppercase;letter-spacing:.04em}
-.pill.published,.pill.available,.pill.past{background:#dcfce7;color:var(--ok)}
-.pill.wip,.pill.upcoming,.pill.coming{background:#fef3c7;color:var(--warn)}
+.pill.published,.pill.available,.pill.past,.pill.released{background:#dcfce7;color:var(--ok)}
+.pill.wip,.pill.upcoming,.pill.coming,.pill.unreleased{background:#fef3c7;color:var(--warn)}
 .pill.draft,.pill.planned{background:#eee;color:#555}
 form .f{display:grid;grid-template-columns:140px 1fr;gap:8px 14px;align-items:start;margin-bottom:8px}
 form label{color:var(--mute);padding-top:7px}
@@ -71,7 +71,7 @@ h3{margin:28px 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06e
 <header>
   <b>carlodemarchis <span style="color:#888;font-weight:400">studio</span></b>
   <nav>
-    <a href="#projects">Projects</a><a href="#books">Photobooks</a><a href="#events">Events</a><a href="#site">Site & settings</a>
+    <a href="#projects">Projects</a><a href="#books">Photobooks</a><a href="#events">Events</a><a href="#albums">Album covers</a><a href="#site">Site & settings</a>
   </nav>
   <span class="sp"></span>
   <a href="/site/" target="_blank" style="color:#bbb;text-decoration:none;margin-right:14px">Preview site ↗</a>
@@ -111,6 +111,11 @@ const FIELDS = {
     ['isbn','text','ISBN or ASIN'],['format','text','e.g. 21×21 cm softcover'],['pages','text'],['sort_order','number'],
     ['description','textarea'],
   ],
+  albums: [
+    ['artist','text'],['title','text'],['slug','text'],['year','text'],
+    ['kind','select',['single','ep','album']],['status','select',['draft','unreleased','released'],'only released covers are shown on the site'],
+    ['listen_url','text','Spotify / Bandcamp / elasticstage link'],['sort_order','number'],['description','textarea'],
+  ],
   events: [
     ['title','text'],['slug','text'],['kind','select',['exhibition','fair','talk','book_launch','residency','other']],
     ['venue','text'],['city','text'],['start_date','text','YYYY-MM-DD'],['end_date','text','YYYY-MM-DD'],
@@ -118,7 +123,7 @@ const FIELDS = {
     ['url','text'],['project_ids','json','[1, 3] — ids of the projects shown'],['sort_order','number'],['description','textarea'],
   ],
 };
-const OWNER = {projects:'project', books:'book', events:'event'};
+const OWNER = {projects:'project', books:'book', events:'event', albums:'album'};
 let table = 'projects', data = {}, current = null, projects = [];
 
 async function loadAll(){ data = await api('GET','/api/all'); projects = data.projects; }
@@ -132,7 +137,7 @@ async function render(){
   $('#list').innerHTML = `<div class="tools"><button class="pri sm" onclick="create()">+ New ${OWNER[table]}</button><span class="hint">${items.length} records</span></div>` +
     items.map(r => {
       const cov = data.images.find(i => i.owner_type===OWNER[table] && i.owner_id===r.id && i.role==='cover') || data.images.find(i => i.owner_type===OWNER[table] && i.owner_id===r.id);
-      const meta = table==='events' ? `${r.city||''} · ${r.start_date||''}` : `${r.year||''}${r.palette==='color'?' · colour':''}`;
+      const meta = table==='events' ? `${r.city||''} · ${r.start_date||''}` : table==='albums' ? `${r.artist||''} · ${r.year||''}` : `${r.year||''}${r.palette==='color'?' · colour':''}`;
       return `<div class="row ${current===r.id?'on':''}" onclick="openRec(${r.id})"><img src="${cov?thumb(cov.path,96):''}" alt=""><div><div class="t">${esc(r.title)}</div><div class="m">${esc(meta)} <span class="pill ${r.status}">${r.status}</span></div></div></div>`;
     }).join('');
   if (current) renderEdit(items.find(r => r.id === current)); else $('#edit').innerHTML = '<div class="empty">Select or create a record.</div>';
@@ -141,7 +146,7 @@ async function render(){
 function openRec(id){ current = id; render(); }
 async function create(){
   const n = (data[table]||[]).length + 1;
-  const base = {projects:{title:'New project',slug:'new-project-'+n,status:'draft',sort_order:n*10}, books:{title:'New book',slug:'new-book-'+n,status:'draft',sort_order:n*10}, events:{title:'New event',slug:'new-event-'+n,status:'planned',sort_order:n*10}}[table];
+  const base = {projects:{title:'New project',slug:'new-project-'+n,status:'draft',sort_order:n*10}, books:{title:'New book',slug:'new-book-'+n,status:'draft',sort_order:n*10}, events:{title:'New event',slug:'new-event-'+n,status:'planned',sort_order:n*10}, albums:{title:'New release',artist:'',slug:'new-release-'+n,status:'draft',sort_order:n*10}}[table];
   const r = await api('POST','/api/'+table, base); current = r.id; render();
 }
 

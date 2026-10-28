@@ -81,3 +81,19 @@ CREATE TABLE IF NOT EXISTS notes (
   done       INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+-- Album covers for the music projects (Abe Murakami, An Ignorant Soul, ...).
+CREATE TABLE IF NOT EXISTS albums (
+  id          INTEGER PRIMARY KEY,
+  slug        TEXT UNIQUE NOT NULL,
+  artist      TEXT NOT NULL DEFAULT '',
+  title       TEXT NOT NULL,
+  year        TEXT NOT NULL DEFAULT '',
+  kind        TEXT NOT NULL DEFAULT 'single',     -- single | ep | album
+  status      TEXT NOT NULL DEFAULT 'released',   -- draft | unreleased | released
+  listen_url  TEXT NOT NULL DEFAULT '',
+  description TEXT NOT NULL DEFAULT '',
+  sort_order  INTEGER NOT NULL DEFAULT 0,
+  created_at  TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
