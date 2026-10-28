@@ -25,7 +25,7 @@ import studio  # noqa: E402
 
 DOCS = os.path.join(ROOT, "docs")
 IMG = os.path.join(DOCS, "img")
-LARGE, THUMB, SMALL = 2000, 900, 480
+LARGE, MEDIUM, THUMB, SMALL = 2000, 1200, 900, 480
 QUALITY = "82"
 NO_IMAGES = "--no-images" in sys.argv
 
@@ -61,9 +61,10 @@ def process_images(images):
             continue
         key = f"{im['id']}-{hashlib.sha1(src.encode()).hexdigest()[:6]}"
         folder = os.path.join(IMG, im["owner_type"])
-        large, thumb, small = os.path.join(folder, key + ".jpg"), os.path.join(folder, key + "-s.jpg"), os.path.join(folder, key + "-xs.jpg")
+        large, medium, thumb, small = (os.path.join(folder, key + ext) for ext in (".jpg", "-m.jpg", "-s.jpg", "-xs.jpg"))
         if not NO_IMAGES:
             made += derive(src, large, LARGE)
+            derive(src, medium, MEDIUM)
             derive(src, thumb, THUMB)
             derive(src, small, SMALL)
         if not os.path.exists(large):
@@ -73,15 +74,16 @@ def process_images(images):
         im["url"] = f"/img/{im['owner_type']}/{key}.jpg"
         im["thumb"] = f"/img/{im['owner_type']}/{key}-s.jpg"
         im["small"] = f"/img/{im['owner_type']}/{key}-xs.jpg"
+        im["medium"] = f"/img/{im['owner_type']}/{key}-m.jpg"
         im["name"] = os.path.basename(src)
-        keep.update({large, thumb, small})
+        keep.update({large, medium, thumb, small})
     if not NO_IMAGES:
         for dp, _, fn in os.walk(IMG):
             for f in fn:
                 full = os.path.join(dp, f)
                 if full not in keep:
                     os.remove(full)
-    print(f"  images: {len(keep)//3} in use, {made} newly resized")
+    print(f"  images: {len(keep)//4} in use, {made} newly resized")
 
 
 # ---------------------------------------------------------------- text helpers
@@ -159,15 +161,16 @@ def bar_when(start, time_text):
     return f"{out}, {time_text}" if time_text else out
 
 
-def img(im, sizes, alt="", eager=False, cls=""):
-    """<img> with srcset (480 / 900 / 2000 px): the browser picks the smallest file that fills `sizes`."""
+def img(im, sizes, alt="", eager=False, cls="", full=False):
+    """<img> with srcset: 480 / 900 / 1200 px, plus 2000 px only when full=True (page heroes).
+    The browser picks the smallest file that fills `sizes` at its pixel density; the lightbox always opens the 2000 px file."""
     if not im:
         return ""
+    cands = f'{im["small"]} 480w, {im["thumb"]} 900w, {im["medium"]} 1200w' + (f', {im["url"]} 2000w' if full else "")
     return Markup(
-        f'<img{" class=" + chr(34) + cls + chr(34) if cls else ""} src="{im["thumb"]}" '
-        f'srcset="{im["small"]} 480w, {im["thumb"]} 900w, {im["url"]} 2000w" sizes="{sizes}" '
+        f'<img{" class=" + chr(34) + cls + chr(34) if cls else ""} src="{im["thumb"]}" srcset="{cands}" sizes="{sizes}" '
         f'width="{im["w"]}" height="{im["h"]}" alt="{html.escape(str(alt))}" '
-        f'loading="{"eager" if eager else "lazy"}" decoding="async">')
+        f'loading="{"eager" if eager else "lazy"}"{" fetchpriority=" + chr(34) + "high" + chr(34) if eager else ""} decoding="async">')
 
 
 def plain(s):

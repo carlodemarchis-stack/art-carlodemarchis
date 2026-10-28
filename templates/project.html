@@ -17,7 +17,7 @@
   {% if project.hero %}
   <figure class="phero">
     <a href="{{ project.hero.url }}" data-lightbox="{{ project.slug }}" data-caption="{{ project.hero.caption }}">
-      {{ img(project.hero, '100vw', project.hero.caption or (project.title|plain), eager=True) }}
+      {{ img(project.hero, '100vw', project.hero.caption or (project.title|plain), eager=True, full=True) }}
     </a>
     {% if project.hero.caption %}<figcaption>{{ project.hero.caption }}</figcaption>{% endif %}
   </figure>

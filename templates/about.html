@@ -15,7 +15,7 @@
       </div>
     </div>
     {% if portrait %}
-    <figure class="about-portrait">{{ img(portrait, '(max-width:760px) 100vw, 45vw', site.artist_name, eager=True) }}{% if portrait.caption %}<figcaption>{{ portrait.caption }}</figcaption>{% endif %}</figure>
+    <figure class="about-portrait">{{ img(portrait, '(max-width:760px) 100vw, 45vw', site.artist_name, eager=True, full=True) }}{% if portrait.caption %}<figcaption>{{ portrait.caption }}</figcaption>{% endif %}</figure>
     {% endif %}
   </div>
 </section>
