@@ -1002,8 +1002,17 @@
    "owner_type": "album",
    "owner_id": 1,
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Something/Cover/Cover/Cover.001.jpeg",
-   "role": "cover",
+   "role": "alt",
    "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 174,
+   "owner_type": "album",
+   "owner_id": 1,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Something/Cover/Cover/Cover.002.jpeg",
+   "role": "cover",
+   "caption": "back / alternate",
    "sort_order": 0
   },
   {
@@ -1155,8 +1164,17 @@
    "owner_type": "album",
    "owner_id": 16,
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.001.jpeg",
-   "role": "cover",
+   "role": "alt",
    "caption": "",
+   "sort_order": 0
+  },
+  {
+   "id": 206,
+   "owner_type": "album",
+   "owner_id": 16,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.003.jpeg",
+   "role": "cover",
+   "caption": "back / alternate",
    "sort_order": 0
   },
   {
@@ -1382,15 +1400,6 @@
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/keynote-2025/pasted-movie-16540.png",
    "role": "gallery",
    "caption": "Liquida 2024",
-   "sort_order": 1
-  },
-  {
-   "id": 174,
-   "owner_type": "album",
-   "owner_id": 1,
-   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Something/Cover/Cover/Cover.002.jpeg",
-   "role": "alt",
-   "caption": "back / alternate",
    "sort_order": 1
   },
   {
@@ -1668,15 +1677,6 @@
    "owner_type": "album",
    "owner_id": 10,
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/Abe Murakami/Released/One Message/Cover/Cover/Cover.003.jpeg",
-   "role": "alt",
-   "caption": "back / alternate",
-   "sort_order": 2
-  },
-  {
-   "id": 206,
-   "owner_type": "album",
-   "owner_id": 16,
-   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/An Ignorant Soul/Released/House of Lights/Cover/Cover/Cover.003.jpeg",
    "role": "alt",
    "caption": "back / alternate",
    "sort_order": 2
