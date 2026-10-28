@@ -8,7 +8,7 @@
     <a class="btn-light" href="/projects/">See the projects</a>
   </div>
   <div class="mosaic" aria-hidden="true">
-    {% for im in hero[:8] %}
+    {% for im in hero[:4] %}
     <img src="{{ im.thumb }}" width="{{ im.w }}" height="{{ im.h }}" alt="" loading="{{ 'eager' if loop.index <= 4 else 'lazy' }}">
     {% endfor %}
   </div>

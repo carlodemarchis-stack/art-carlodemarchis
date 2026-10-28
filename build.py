@@ -174,7 +174,8 @@ def main():
         ims = imgs_for(kind, rec["id"])
         rec["images"] = ims
         rec["cover"] = next((i for i in ims if i["role"] == "cover"), ims[0] if ims else None)
-        rec["gallery"] = [i for i in ims if i["role"] != "cover"] or ims
+        rec["hero"] = next((i for i in ims if i["role"] == "hero"), rec["cover"])   # page-top image; cover is for lists
+        rec["gallery"] = [i for i in ims if i["role"] not in ("cover", "hero", "alt")] or ims
         return rec
 
     projects = [with_images(p, "project") for p in data["projects"] if p["status"] in ("published", "wip")]
@@ -208,9 +209,10 @@ def main():
             artists.append(a["artist"])
     site_imgs = imgs_for("site", 0)
     portrait = next((i for i in site_imgs if i["role"] == "portrait"), None)
-    hero = [i for i in site_imgs if i["role"] == "hero"] or \
-           [p["cover"] for p in projects if p["featured"] and p["cover"]] or \
-           [p["cover"] for p in projects if p["cover"]][:8]
+    feat = [p for p in projects if p["featured"] and p["cover"]]
+    bw, col = [p["cover"] for p in feat if p["palette"] != "color"], [p["cover"] for p in feat if p["palette"] == "color"]
+    mixed = [x for pair in zip(bw, col) for x in pair] + bw[len(col):] + col[len(bw):]   # alternate b&w / colour
+    hero = [i for i in site_imgs if i["role"] == "hero"] or mixed or [p["cover"] for p in projects if p["cover"]][:8]
 
     env = Environment(loader=FileSystemLoader(os.path.join(ROOT, "templates")),
                       autoescape=select_autoescape(["html"]), trim_blocks=True, lstrip_blocks=True)

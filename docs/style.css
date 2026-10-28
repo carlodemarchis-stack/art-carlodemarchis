@@ -50,11 +50,9 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .hero-sub{color:#bdbdbd;max-width:46ch;font-size:17px;margin:0 0 28px}
 .btn-light{display:inline-block;background:#fff;color:#000;font-weight:600;padding:12px 20px;border-radius:999px}
 .btn-light:hover{background:#ddd}
-.mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;filter:grayscale(0)}
-.mosaic img:nth-child(1){grid-column:span 2;grid-row:span 2}
-.mosaic img:nth-child(6){grid-column:span 2}
-@media (max-width:860px){.hero{grid-template-columns:1fr}.mosaic{grid-template-columns:repeat(4,1fr)}}
+.mosaic{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:640px;margin-left:auto}
+.mosaic img{width:100%;aspect-ratio:1;object-fit:cover}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.mosaic{margin-left:0;max-width:none}}
 
 /* sections */
 .section{max-width:var(--max);margin:0 auto;padding:clamp(40px,6vw,80px) var(--gut)}

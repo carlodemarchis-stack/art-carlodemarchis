@@ -176,14 +176,14 @@ function renderEdit(r){
       <button class="danger sm" onclick="del(${r.id})">Delete</button></div>
     <form id="form" onsubmit="save(event,${r.id})">${FIELDS[table].map(f=>field(r,f)).join('')}
       <div class="bar"><button class="pri" type="submit">Save</button><span class="hint" id="saved"></span></div></form>
-    <h3>Images <span class="hint">· first = cover unless a cover is set · drag not supported, use ◀ ▶</span></h3>
+    <h3>Images <span class="hint">· cover = lists & home · hero = top of the project page (optional, defaults to cover) · alt = kept but not shown · use ◀ ▶ to reorder</span></h3>
     <div class="bar"><button class="sm" onclick="pick('${o}',${r.id})">+ Add images from disk…</button></div>
-    <div class="imgs">${imgs.map((i,idx)=>`<div class="im ${i.role==='cover'?'cover':''}">
+    <div class="imgs">${imgs.map((i,idx)=>`<div class="im ${i.role==='cover'?'cover':''}" style="${i.role==='hero'?'outline:3px solid #0a7bd1':''}">
       <img src="${thumb(i.path,320)}" title="${esc(i.path)}" loading="lazy">
       <div class="c"><div class="hint" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(i.path.split('/').pop())}</div>
         <input placeholder="caption" value="${esc(i.caption)}" onchange="upImg(${i.id},{caption:this.value})">
         <div class="ops"><button class="sm" onclick="mv(${idx},-1)">◀</button><button class="sm" onclick="mv(${idx},1)">▶</button>
-        <button class="sm" onclick="upImg(${i.id},{role:'${i.role==='cover'?'gallery':'cover'}'})">${i.role==='cover'?'unset cover':'set cover'}</button>
+        <select onchange="upImg(${i.id},{role:this.value})" style="width:auto;padding:2px 4px;font-size:12px">${['cover','hero','gallery','alt'].map(r=>`<option ${r===i.role?'selected':''}>${r}</option>`).join('')}</select>
         <button class="sm danger" onclick="delImg(${i.id})">×</button></div></div></div>`).join('')}</div>
     <h3>Notes & to-do</h3>
     <div class="bar"><input id="noteIn" placeholder="e.g. write the statement, confirm venue, order prints…" onkeydown="if(event.key==='Enter'){event.preventDefault();addNote('${o}',${r.id})}"><button class="sm" onclick="addNote('${o}',${r.id})">Add</button></div>
