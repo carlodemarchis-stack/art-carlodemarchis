@@ -224,18 +224,18 @@
    "id": 13,
    "slug": "pole",
    "title": "Pole",
-   "subtitle": "",
+   "subtitle": "The Continental Pole of Inaccessibility — 46°16′48″ N, 86°40′12″ E",
    "year": "2026",
    "kind": "series",
    "palette": "color",
    "status": "published",
-   "excerpt": "",
-   "statement": "",
+   "excerpt": "A day at the beach at the point on Earth farthest from every sea: the Gurbantünggüt desert, Xinjiang, 2,560 km from the nearest coast.",
+   "statement": "46°16′48″ N, 86°40′12″ E. The Continental Pole of Inaccessibility: the point on land farthest from every sea — 2,560 km from the coast on average (three published calculations give 2,645, 2,510 and 2,514 km) — in the Gurbantünggüt (Dzoosotoyn Elisen) desert, Xinjiang Uygur Autonomous Region, People's Republic of China.\n\nThis is the first work born from that concept: a series of full-colour photographs, in the look of late-1970s 35 mm Kodak Ektachrome, of people who went to the beach at the place where the beach is farthest. Swimsuits, sun hats, cool boxes and towels, laid out on the dry steppe, with nobody and nothing around for thousands of kilometres.\n\nThe pole is also a question, asked in two directions.\n\n- **Outside you** — what is your pole of inaccessibility, the point of you farthest from everyone else?\n- **Inside you** — if you look inside yourself, what is there, at the point farthest from everything outside?\n\nWhat else can be born from this — a book, a film, a poem, a map, a monument, a ritual, an expedition? That is what the project wants to explore.",
    "links": "[]",
    "sort_order": 220,
    "featured": 0,
    "created_at": "2026-10-28 04:54:11",
-   "updated_at": "2026-10-28 05:20:20"
+   "updated_at": "2026-10-28 05:22:32"
   },
   {
    "id": 14,
@@ -1030,6 +1030,15 @@
    "sort_order": 2
   },
   {
+   "id": 170,
+   "owner_type": "project",
+   "owner_id": 13,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/pole/continental-pole-opening-p12.jpg",
+   "role": "gallery",
+   "caption": "",
+   "sort_order": 2
+  },
+  {
    "id": 4,
    "owner_type": "project",
    "owner_id": 1,
@@ -1201,6 +1210,15 @@
    "sort_order": 3
   },
   {
+   "id": 171,
+   "owner_type": "project",
+   "owner_id": 13,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/pole/continental-pole-opening-p13.jpg",
+   "role": "gallery",
+   "caption": "",
+   "sort_order": 3
+  },
+  {
    "id": 5,
    "owner_type": "project",
    "owner_id": 1,
@@ -1349,6 +1367,15 @@
    "owner_type": "book",
    "owner_id": 4,
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/Books/PhotoMemory/photomemory close ups/photomemory close ups.004.jpeg",
+   "role": "gallery",
+   "caption": "",
+   "sort_order": 4
+  },
+  {
+   "id": 172,
+   "owner_type": "project",
+   "owner_id": 13,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Claude Code/carlodemarchis-site/sources/pole/continental-pole-opening-p14.jpg",
    "role": "gallery",
    "caption": "",
    "sort_order": 4
@@ -2018,7 +2045,7 @@
    "owner_type": "project",
    "owner_id": 13,
    "body": "New colour project found in AI Art — write excerpt + statement, pick the final images, then set status to published.",
-   "done": 0,
+   "done": 1,
    "created_at": "2026-10-28 04:54:11"
   },
   {
@@ -2092,6 +2119,14 @@
    "body": "Fill in email / Instagram / LinkedIn in Site & settings; set base_url (and domain for a custom CNAME) before publishing.",
    "done": 0,
    "created_at": "2026-10-28 04:54:11"
+  },
+  {
+   "id": 19,
+   "owner_type": "project",
+   "owner_id": 13,
+   "body": "Statement written from the 'continental-pole-opening' talk deck (Oct 2026) — review wording; the three deck photos are ~1900px, replace with hi-res originals when available.",
+   "done": 0,
+   "created_at": "2026-10-28 05:22:32"
   }
  ]
 }
