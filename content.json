@@ -805,6 +805,20 @@
    "updated_at": "2026-10-28 06:09:11"
   },
   {
+   "id": 23,
+   "slug": "100-operai-elettrici-waiting-for-c2c",
+   "artist": "100 Operai Elettrici",
+   "title": "Waiting for C2C",
+   "year": "2026",
+   "kind": "single",
+   "status": "released",
+   "listen_url": "",
+   "description": "",
+   "sort_order": 200,
+   "created_at": "2026-10-28 07:21:06",
+   "updated_at": "2026-10-28 07:21:06"
+  },
+  {
    "id": 1,
    "slug": "100-operai-elettrici-something",
    "artist": "100 Operai Elettrici",
@@ -814,7 +828,7 @@
    "status": "released",
    "listen_url": "",
    "description": "",
-   "sort_order": 200,
+   "sort_order": 210,
    "created_at": "2026-10-28 06:09:11",
    "updated_at": "2026-10-28 06:09:11"
   },
@@ -828,7 +842,7 @@
    "status": "released",
    "listen_url": "",
    "description": "",
-   "sort_order": 210,
+   "sort_order": 220,
    "created_at": "2026-10-28 06:09:11",
    "updated_at": "2026-10-28 06:09:11"
   },
@@ -842,7 +856,7 @@
    "status": "released",
    "listen_url": "",
    "description": "",
-   "sort_order": 220,
+   "sort_order": 230,
    "created_at": "2026-10-28 06:09:11",
    "updated_at": "2026-10-28 06:09:11"
   }
@@ -1359,6 +1373,15 @@
    "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/FACTORY63/Companies/Reply/Book/111a.png",
    "role": "cover",
    "caption": "Room 111a — musicians in the street",
+   "sort_order": 0
+  },
+  {
+   "id": 246,
+   "owner_type": "album",
+   "owner_id": 23,
+   "path": "/Users/carlodemarchis/Documents/_cdm/_carlo/Art/AI music/100 Operai Elettrici/Released/Waiting for C2C/Cover/Cover/cover.001.png",
+   "role": "cover",
+   "caption": "",
    "sort_order": 0
   },
   {
@@ -3394,6 +3417,14 @@
    "body": "Statement abridged from the Torino Moves book (your words) — review. Room captions guessed from the book's chapter order; images 210–222 uncaptioned. Decide whether the book itself goes on the Photobooks page.",
    "done": 0,
    "created_at": "2026-10-28 07:18:52"
+  },
+  {
+   "id": 48,
+   "owner_type": "album",
+   "owner_id": 23,
+   "body": "Year taken from the cover file date and kind guessed — check both; add the listen link.",
+   "done": 0,
+   "created_at": "2026-10-28 07:21:06"
   }
  ]
 }
