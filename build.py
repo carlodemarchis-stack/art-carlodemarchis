@@ -223,6 +223,10 @@ def main():
         render("project.html", f"projects/{p['slug']}/index.html", page="projects", project=p,
                prev=projects[i - 1] if i else None, next=projects[i + 1] if i + 1 < len(projects) else None)
     render("projects.html", "projects/index.html", page="projects")
+    for d in os.listdir(os.path.join(DOCS, "projects")):      # pages of projects no longer visible
+        full = os.path.join(DOCS, "projects", d)
+        if os.path.isdir(full) and d not in {p["slug"] for p in projects}:
+            shutil.rmtree(full)
     render("books.html", "photobooks/index.html", page="books")
     render("events.html", "exhibitions/index.html", page="events")
     render("about.html", "about/index.html", page="about")
