@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="{{ self.title()|plain }}">
 <meta name="twitter:description" content="{{ self.desc() }}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=13">
+<link rel="stylesheet" href="/style.css?v=14">
 {% if site.umami_website_id %}
 <!-- Umami -->
 <script>if((location.search+location.hash).indexOf('noumami')>-1){try{localStorage.setItem('umami.disabled','1')}catch(e){}}</script>
@@ -52,6 +52,17 @@
 <main id="main">
 {% block content %}{% endblock %}
 </main>
+{% if tec and tec.links %}
+<section class="tec{% if page != 'home' %} tec-sm{% endif %}">
+  <div class="tec-in">
+    <a class="tec-logo" href="{{ tec.links[0][1] }}" rel="noopener"><img src="/torinoecultura.webp" width="1200" height="331" alt="Torino e Cultura" loading="lazy"></a>
+    <div class="tec-text">
+      <p>{{ tec.blurb }}</p>
+      <div class="tec-links">{% for l in tec.links %}<a class="btn-light" href="{{ l[1] }}" rel="noopener">{{ l[0] }} ↗</a>{% endfor %}</div>
+    </div>
+  </div>
+</section>
+{% endif %}
 <footer class="foot">
   <div class="foot-grid">
     <div><span class="wordmark">{{ site.site_name }}</span><br><span class="tag">{{ site.tagline }}</span></div>
