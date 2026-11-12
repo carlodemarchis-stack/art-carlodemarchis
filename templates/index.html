@@ -5,8 +5,8 @@
   <div class="hero-text">
     <h1 class="wordmark-xl">{{ site.site_name }}</h1>
     <p class="hero-tag">{{ site.tagline }}</p>
-    <p class="hero-sub">AI-generated black & white photography for storytelling and social provocation — plus new work in colour.</p>
-    <a class="btn-light" href="/projects/">See the projects</a>
+    <p class="hero-sub">{{ _("AI-generated black & white photography for storytelling and social provocation — plus new work in colour.") }}</p>
+    <a class="btn-light" href="{{ pre }}/projects/">{{ _("See the projects") }}</a>
   </div>
   <div class="mosaic" id="mosaic">
     {% for t in tiles %}
@@ -22,18 +22,18 @@
 {% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
 {% set series = projects|rejectattr('kind', 'equalto', 'commission')|list %}
 <section class="section">
-  <div class="section-head"><h2>Projects</h2><span class="count">{{ series|length }}</span></div>
+  <div class="section-head"><h2>{{ _("Projects") }}</h2><span class="count">{{ series|length }}</span></div>
   <ol class="plist">
     {% for p in series %}
     <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
-      <a class="pitem-img" href="/projects/{{ p.slug }}/">
+      <a class="pitem-img" href="{{ pre }}/projects/{{ p.slug }}/">
         {{ img(p.hero or p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
       </a>
       <div class="pitem-text">
-        <div class="meta"><span>{{ '%02d'|format(loop.index) }}</span><span>{{ p.year }}</span>{% if p.palette == 'color' %}<span class="pill color">colour</span>{% endif %}{% if p.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}</div>
-        <h3><a href="/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
+        <div class="meta"><span>{{ '%02d'|format(loop.index) }}</span><span>{{ p.year }}</span>{% if p.palette == 'color' %}<span class="pill color">{{ _("colour") }}</span>{% endif %}{% if p.status == 'wip' %}<span class="pill wip">{{ _("work in progress") }}</span>{% endif %}</div>
+        <h3><a href="{{ pre }}/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
         {% if p.excerpt %}<p>{{ p.excerpt }}</p>{% endif %}
-        <a class="more" href="/projects/{{ p.slug }}/">View project</a>
+        <a class="more" href="{{ pre }}/projects/{{ p.slug }}/">{{ _("View project") }}</a>
       </div>
     </li>
     {% endfor %}
@@ -42,19 +42,19 @@
 
 {% if specials %}
 <section class="section">
-  <div class="section-head"><h2>Special projects</h2><span class="count">{{ specials|length }}</span></div>
+  <div class="section-head"><h2>{{ _("Special projects") }}</h2><span class="count">{{ specials|length }}</span></div>
   <ol class="plist">
     {% for p in specials %}
     <li class="pitem {{ 'color' if p.palette == 'color' else 'bw' }}">
-      <a class="pitem-img" href="/projects/{{ p.slug }}/">
+      <a class="pitem-img" href="{{ pre }}/projects/{{ p.slug }}/">
         {{ img(p.hero or p.cover, '(max-width:760px) 100vw, min(56vw, 760px)', p.title|plain) }}
       </a>
       <div class="pitem-text">
-        <div class="meta"><span class="pill">special project</span><span>{{ p.year }}</span></div>
-        <h3><a href="/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
+        <div class="meta"><span class="pill">{{ _("special project") }}</span><span>{{ p.year }}</span></div>
+        <h3><a href="{{ pre }}/projects/{{ p.slug }}/">{{ p.title|redact }}</a></h3>
         {% if p.subtitle %}<p class="subtitle-sm">{{ p.subtitle }}</p>{% endif %}
         {% if p.excerpt %}<p>{{ p.excerpt }}</p>{% endif %}
-        <a class="more" href="/projects/{{ p.slug }}/">View project</a>
+        <a class="more" href="{{ pre }}/projects/{{ p.slug }}/">{{ _("View project") }}</a>
       </div>
     </li>
     {% endfor %}
@@ -64,13 +64,13 @@
 
 {% if books %}
 <section class="section section-dark">
-  <div class="section-head"><h2>Photobooks</h2><a class="more light" href="/photobooks/">All photobooks</a></div>
+  <div class="section-head"><h2>{{ _("Photobooks") }}</h2><a class="more light" href="{{ pre }}/photobooks/">{{ _("All photobooks") }}</a></div>
   <div class="bgrid">
     {% for b in books[:4] %}
-    <a class="bcard" href="/photobooks/#{{ b.slug }}">
+    <a class="bcard" href="{{ pre }}/photobooks/#{{ b.slug }}">
       {{ img(b.cover, '(max-width:640px) 50vw, 260px') }}
       <span class="bcard-t">{{ b.title|redact }}</span>
-      <span class="bcard-m">{{ b.year }}{% if b.status == 'coming' %} · coming soon{% elif b.status == 'private' %} · private edition{% endif %}</span>
+      <span class="bcard-m">{{ b.year }}{% if b.status == 'coming' %} · {{ _("coming soon") }}{% elif b.status == 'private' %} · {{ _("private edition") }}{% endif %}</span>
     </a>
     {% endfor %}
   </div>
@@ -79,10 +79,10 @@
 
 {% if albums %}
 <section class="section">
-  <div class="section-head"><h2>Album covers</h2><a class="more" href="/covers/">All covers</a></div>
+  <div class="section-head"><h2>{{ _("Album covers") }}</h2><a class="more" href="{{ pre }}/covers/">{{ _("All covers") }}</a></div>
   <div class="cgrid home">
     {% for a in albums[:6] %}
-    <a class="ccard" href="/covers/#{{ a.slug }}">
+    <a class="ccard" href="{{ pre }}/covers/#{{ a.slug }}">
       {{ img(a.cover, '(max-width:640px) 50vw, 200px', a.artist ~ ' — ' ~ a.title) }}
       <span class="ccard-t">{{ a.title }}</span><span class="ccard-m">{{ a.artist }}</span>
     </a>
@@ -93,10 +93,10 @@
 
 {% if events %}
 <section class="section">
-  <div class="section-head"><h2>Exhibitions</h2><a class="more" href="/exhibitions/">All exhibitions</a></div>
+  <div class="section-head"><h2>{{ _("Exhibitions") }}</h2><a class="more" href="{{ pre }}/exhibitions/">{{ _("All exhibitions") }}</a></div>
   <ul class="elist">
     {% for e in events %}
-    <li><a href="/exhibitions/#{{ e.slug }}"><span class="when">{{ e.when }}</span><span class="what">{{ e.title }}</span><span class="where">{{ e.venue }}{% if e.venue and e.city %}, {% endif %}{{ e.city }}</span></a></li>
+    <li><a href="{{ pre }}/exhibitions/#{{ e.slug }}"><span class="when">{{ e.when }}</span><span class="what">{{ e.title }}</span><span class="where">{{ e.venue }}{% if e.venue and e.city %}, {% endif %}{{ e.city }}</span></a></li>
     {% endfor %}
   </ul>
 </section>

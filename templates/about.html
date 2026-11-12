@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}About — {{ site.site_name }}{% endblock %}
-{% block canon %}{{ base }}/about/{% endblock %}
+{% block title %}{{ _("About") }} — {{ site.site_name }}{% endblock %}
+{% block canon %}{{ base }}{{ pre }}/about/{% endblock %}
 {% block content %}
 <section class="section about">
   <div class="about-grid">
@@ -9,7 +9,7 @@
       <p class="tagline-big">{{ site.tagline }}</p>
       <div class="statement">{{ bio }}</div>
       <div class="book-actions">
-        {% if site.email %}<a class="btn" href="mailto:{{ site.email }}">Get in touch</a>{% endif %}
+        {% if site.email %}<a class="btn" href="mailto:{{ site.email }}">{{ _("Get in touch") }}</a>{% endif %}
         {% if site.instagram %}<a class="btn ghost" href="{{ site.instagram }}" rel="me noopener">Instagram ↗</a>{% endif %}
         {% if site.medium %}<a class="btn ghost" href="{{ site.medium }}" rel="me noopener">Medium ↗</a>{% endif %}
         {% if site.linkedin %}<a class="btn ghost" href="{{ site.linkedin }}" rel="me noopener">LinkedIn ↗</a>{% endif %}

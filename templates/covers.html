@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Album covers — {{ site.site_name }}{% endblock %}
-{% block desc %}Cover art for the music released as {{ artists|join(', ') }}.{% endblock %}
+{% block title %}{{ _("Album covers") }} — {{ site.site_name }}{% endblock %}
+{% block desc %}{{ _('Cover art for the music released as') }} {{ artists|join(', ') }}.{% endblock %}
 {% block og %}{% if albums %}<meta property="og:image" content="{{ base }}{{ albums[0].cover.og }}">{% endif %}{% endblock %}
-{% block canon %}{{ base }}/covers/{% endblock %}
+{% block canon %}{{ base }}{{ pre }}/covers/{% endblock %}
 {% block content %}
 <section class="section">
-  <div class="section-head"><h1 class="h-page">Album covers</h1><span class="count">{{ albums|length }}</span></div>
-  <p class="lead">The same images, one square at a time: cover art for the music released under {{ artists|length }} names.</p>
+  <div class="section-head"><h1 class="h-page">{{ _("Album covers") }}</h1><span class="count">{{ albums|length }}</span></div>
+  <p class="lead">{{ _("The same images, one square at a time: cover art for the music released under %d names.")|format(artists|length) }}</p>
   {% for artist in artists %}
-  <div class="artist-head"><h2>{{ artist }}</h2><span class="count">{{ albums|selectattr('artist', 'equalto', artist)|list|length }}</span>{% if artist_links.get(artist) %}<a class="more" href="{{ artist_links[artist] }}" rel="noopener">Listen on Spotify ↗</a>{% endif %}</div>
+  <div class="artist-head"><h2>{{ artist }}</h2><span class="count">{{ albums|selectattr('artist', 'equalto', artist)|list|length }}</span>{% if artist_links.get(artist) %}<a class="more" href="{{ artist_links[artist] }}" rel="noopener">{{ _("Listen on Spotify") }} ↗</a>{% endif %}</div>
   <div class="cgrid">
     {% for a in albums if a.artist == artist %}
     <article class="ccard" id="{{ a.slug }}">
@@ -16,15 +16,15 @@
         {{ img(a.cover, '(max-width:640px) 50vw, 240px', a.artist ~ ' — ' ~ a.title) }}
       </a>
       <span class="ccard-t">{{ a.title }}</span>
-      <span class="ccard-m">{{ a.kind }}{% if a.year %} · {{ a.year }}{% endif %}{% if a.listen_url %} · <a href="{{ a.listen_url }}" rel="noopener">listen ↗</a>{% endif %}</span>
+      <span class="ccard-m">{{ _(a.kind) }}{% if a.year %} · {{ a.year }}{% endif %}{% if a.listen_url %} · <a href="{{ a.listen_url }}" rel="noopener">{{ _("listen") }} ↗</a>{% endif %}</span>
       {% if a.description %}<span class="ccard-m">{{ a.description }}</span>{% endif %}
     </article>
     {% endfor %}
   </div>
   {% endfor %}
   {% if site.spotify_playlist %}
-  <div class="artist-head" style="margin-top:64px"><h2>Listen</h2></div>
-  <iframe class="spotify" title="Spotify playlist" src="{{ site.spotify_playlist }}" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <div class="artist-head" style="margin-top:64px"><h2>{{ _("Listen") }}</h2></div>
+  <iframe class="spotify" title="{{ _("Spotify playlist") }}" src="{{ site.spotify_playlist }}" width="100%" height="352" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   {% endif %}
 </section>
 {% endblock %}

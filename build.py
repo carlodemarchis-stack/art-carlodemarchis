@@ -6,6 +6,7 @@
 
 Needs: python3 with jinja2 (system python has it) and macOS `sips` for image resizing.
 """
+import copy
 import hashlib
 import html
 import json
@@ -161,9 +162,14 @@ def inline(s):
 
 
 MONTHS = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+MONTHS_IT = ["", "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+DAYS_IT = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
+LANGS = ("en", "it")          # en is served at /, every other language at /<lang>/ with the same paths
 
 
-def fmt_dates(start, end):
+def fmt_dates(start, end, lang="en"):
+    MONTHS = MONTHS_IT if lang == "it" else globals()["MONTHS"]
     def parse(s):
         try:
             y, m, d = (s + "-00-00").split("-")[:3]
@@ -182,13 +188,14 @@ def fmt_dates(start, end):
     return f"{a[2]} {MONTHS[a[1]]} {a[0]} – {b[2]} {MONTHS[b[1]]} {b[0]}"
 
 
-def bar_when(start, time_text):
+def bar_when(start, time_text, lang="en"):
     """'Thursday 29 October, from 7 pm' for the This-week bar."""
+    months, days = (MONTHS_IT, DAYS_IT) if lang == "it" else (MONTHS, DAYS)
     try:
         d = date(*[int(x) for x in start.split("-")[:3]])
     except (ValueError, TypeError):
         return time_text
-    out = f"{d.strftime('%A')} {d.day} {MONTHS[d.month]}"
+    out = f"{days[d.weekday()]} {d.day} {months[d.month]}"
     return f"{out}, {time_text}" if time_text else out
 
 
@@ -206,6 +213,56 @@ def img(im, sizes, alt="", eager=False, cls="", full=False):
 
 def plain(s):
     return REDACT.sub("___", str(s))
+
+
+# ---------------------------------------------------------------- languages
+def load_json(name):
+    p = os.path.join(ROOT, "i18n", name)
+    return json.load(open(p)) if os.path.exists(p) else {}
+
+
+def localize(bundle, lang):
+    """Deep copy of the English records with the i18n/<lang>.json texts laid over them.
+    Anything not translated there stays in English, so new records never break the build."""
+    b = copy.deepcopy(bundle)
+    tr = load_json(f"{lang}.json")
+    caps = tr.get("captions", {})
+
+    def put(rec, t, keys):
+        for k in keys:
+            if t.get(k):
+                rec[k] = t[k]
+        for im in rec.get("images", []):
+            if caps.get(str(im["id"])):
+                im["caption"] = caps[str(im["id"])]
+
+    put(b["site"], tr.get("settings", {}), ("tagline", "bio", "prints_note", "city"))
+    put({"images": b["portraits"]}, {}, ())
+    for p in b["projects"]:
+        t = tr.get("projects", {}).get(p["slug"], {})
+        put(p, t, ("subtitle", "excerpt", "statement"))
+        for link, label in zip(p["links"], t.get("links", [])):
+            if label:
+                link["label"] = label
+    for bk in b["books"]:
+        put(bk, tr.get("books", {}).get(bk["slug"], {}), ("subtitle", "description", "format"))
+    for e in b["events"]:
+        put(e, tr.get("events", {}).get(e["slug"], {}), ("title", "time", "description"))
+        e["when"] = fmt_dates(e["start_date"], e["end_date"], lang)
+        e["when_bar"] = bar_when(e["start_date"], e.get("time", ""), lang)
+    return b
+
+
+def translator(lang, missing):
+    ui = load_json(f"ui_{lang}.json") if lang != "en" else None
+
+    def _(text):
+        if ui is None:
+            return text
+        if text not in ui:
+            missing.add(text)
+        return ui.get(text, text)
+    return _
 
 
 # ---------------------------------------------------------------- build
@@ -276,7 +333,6 @@ def main():
     tec["links"] = [l for l in tec.get("links", []) if len(l) == 2 and l[1]]   # empty url = hidden
     site_imgs = imgs_for("site", 0)
     portraits = [i for i in site_imgs if i["role"] == "portrait"]     # first one is shown in b&w, the others in colour
-    portrait = portraits[0] if portraits else None
     # home mosaic: featured projects (2 = shown first, 1 = in the rotation pool), two b&w + two colour tiles
     feat = sorted([p for p in projects if p["featured"] and p["cover"]], key=lambda p: (-p["featured"], p["sort_order"]))
     def tile(p):
@@ -292,29 +348,46 @@ def main():
     env.filters.update(redact=redact, md=md, plain=plain)
     env.globals["img"] = img
     base = s.get("base_url", "").rstrip("/")
-    ctx = dict(site=s, base=base, projects=projects, books=books, events=events, hero=hero, hero_bg=hero_bg, tiles=tiles, pool_json=json.dumps(pool), albums=albums, artists=artists, artist_links=artist_links, tec=tec,
-               portrait=portrait, portraits=portraits, year=date.today().year, bio=md(s.get("bio", "")))
+    english = dict(site=s, projects=projects, books=books, events=events, portraits=portraits)
+    missing = set()
+    for lang in LANGS:
+        pre = "" if lang == "en" else f"/{lang}"
+        out_root = os.path.join(DOCS, pre.lstrip("/"))
+        loc = english if lang == "en" else localize(english, lang)
+        L = loc["projects"]
+        alt_lang = "it" if lang == "en" else "en"
+        ctx = dict(base=base, hero=hero, hero_bg=hero_bg, albums=albums, artists=artists, artist_links=artist_links, tec=tec,
+                   portrait=(loc["portraits"] or [None])[0], year=date.today().year, bio=md(loc["site"].get("bio", "")),
+                   tiles=[dict(t, url=pre + t["url"]) for t in tiles],
+                   pool_json=json.dumps({k: [dict(t, url=pre + t["url"]) for t in v] for k, v in pool.items()}),
+                   lang=lang, pre=pre, _=translator(lang, missing), alt_lang=alt_lang,
+                   alt_label="Leggi in italiano" if alt_lang == "it" else "Read in English", **loc)
 
-    def render(tpl, out, **kw):
-        path = os.path.join(DOCS, out)
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, "w") as f:
-            f.write(env.get_template(tpl).render(**ctx, **kw))
+        def render(tpl, out, **kw):
+            path = os.path.join(out_root, out)
+            url = "/" + out[:-len("index.html")] if out.endswith("index.html") else "/"
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w") as f:
+                f.write(env.get_template(tpl).render(**ctx, **kw, path=url,
+                                                     alt_url=("" if alt_lang == "en" else f"/{alt_lang}") + url))
 
-    render("index.html", "index.html", page="home")
-    for i, p in enumerate(projects):
-        render("project.html", f"projects/{p['slug']}/index.html", page="projects", project=p,
-               prev=projects[i - 1] if i else None, next=projects[i + 1] if i + 1 < len(projects) else None)
-    render("projects.html", "projects/index.html", page="projects")
-    for d in os.listdir(os.path.join(DOCS, "projects")):      # pages of projects no longer visible
-        full = os.path.join(DOCS, "projects", d)
-        if os.path.isdir(full) and d not in {p["slug"] for p in projects}:
-            shutil.rmtree(full)
-    render("books.html", "photobooks/index.html", page="books")
-    render("events.html", "exhibitions/index.html", page="events")
-    render("about.html", "about/index.html", page="about")
-    render("covers.html", "covers/index.html", page="covers")
-    render("404.html", "404.html", page="404")
+        render("index.html", "index.html", page="home")
+        for i, p in enumerate(L):
+            render("project.html", f"projects/{p['slug']}/index.html", page="projects", project=p,
+                   prev=L[i - 1] if i else None, next=L[i + 1] if i + 1 < len(L) else None)
+        render("projects.html", "projects/index.html", page="projects")
+        for d in os.listdir(os.path.join(out_root, "projects")):      # pages of projects no longer visible
+            full = os.path.join(out_root, "projects", d)
+            if os.path.isdir(full) and d not in {p["slug"] for p in L}:
+                shutil.rmtree(full)
+        render("books.html", "photobooks/index.html", page="books")
+        render("events.html", "exhibitions/index.html", page="events")
+        render("about.html", "about/index.html", page="about")
+        render("covers.html", "covers/index.html", page="covers")
+        if lang == "en":
+            render("404.html", "404.html", page="404")
+    if missing:
+        print("  ! untranslated UI strings (add them to i18n/ui_*.json):\n    " + "\n    ".join(sorted(missing)))
 
     # static assets, GitHub Pages plumbing
     for f in os.listdir(os.path.join(ROOT, "static")):
@@ -328,7 +401,7 @@ def main():
     urls = ["/", "/projects/", "/photobooks/", "/exhibitions/", "/covers/", "/about/"] + [f"/projects/{p['slug']}/" for p in projects]
     with open(os.path.join(DOCS, "sitemap.xml"), "w") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                + "".join(f"  <url><loc>{base}{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+                + "".join(f"  <url><loc>{base}{pre}{u}</loc></url>\n" for pre in ("", "/it") for u in urls) + "</urlset>\n")
     studio.export_json()
     print(f"build: {len(projects)} projects, {len(books)} books, {len(events)} events, {len(albums)} covers -> {DOCS}")
 

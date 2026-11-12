@@ -52,7 +52,9 @@ p a{text-decoration:underline;text-underline-offset:3px}
 .nav{display:flex;gap:clamp(14px,2.5vw,34px);font-size:15px;font-weight:500;letter-spacing:-.01em}
 .nav a{padding:4px 0;border-bottom:2px solid transparent}
 .nav a:hover,.nav a[aria-current]{border-color:var(--ink)}
-@media (max-width:640px){.top{flex-direction:column;align-items:flex-start;gap:14px}.nav{gap:18px;font-size:14px}}
+.nav a.lang{margin-left:clamp(0px,1vw,10px);padding:3px 7px;border:1.5px solid var(--ink);border-radius:3px;font-size:12px;font-weight:700;letter-spacing:.06em;line-height:1.2;align-self:center}
+.nav a.lang:hover{background:var(--ink);color:var(--paper,#fff)}
+@media (max-width:640px){.top{flex-direction:column;align-items:flex-start;gap:14px;position:relative}.nav{gap:6px 18px;font-size:14px;flex-wrap:wrap}.nav a{white-space:nowrap}.nav a.lang{position:absolute;top:24px;right:var(--gut);margin:0}}
 
 /* hero (home) */
 .hero{background:#000;color:#fff;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);padding:clamp(40px,7vw,96px) var(--gut);align-items:center;position:relative;overflow:hidden;isolation:isolate}

@@ -1,25 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Projects — {{ site.site_name }}{% endblock %}
-{% block canon %}{{ base }}/projects/{% endblock %}
+{% block title %}{{ _("Projects") }} — {{ site.site_name }}{% endblock %}
+{% block canon %}{{ base }}{{ pre }}/projects/{% endblock %}
 {% block content %}
 {% set specials = projects|selectattr('kind', 'equalto', 'commission')|list %}
 {% set series = projects|rejectattr('kind', 'equalto', 'commission')|list %}
 <section class="section">
-  <div class="section-head"><h1 class="h-page">Projects</h1><span class="count">{{ series|length }}</span></div>
+  <div class="section-head"><h1 class="h-page">{{ _("Projects") }}</h1><span class="count">{{ series|length }}</span></div>
   <div class="pgrid">
     {% for p in series %}
-    <a class="pcard {{ 'color' if p.palette == 'color' else 'bw' }}" href="/projects/{{ p.slug }}/">
+    <a class="pcard {{ 'color' if p.palette == 'color' else 'bw' }}" href="{{ pre }}/projects/{{ p.slug }}/">
       {{ img(p.cover, '(max-width:640px) 100vw, 360px') }}
       <span class="pcard-t">{{ p.title|redact }}</span>
-      <span class="pcard-m">{{ p.year }}{% if p.palette == 'color' %} · colour{% endif %}{% if p.status == 'wip' %} · work in progress{% endif %}</span>
+      <span class="pcard-m">{{ p.year }}{% if p.palette == 'color' %} · {{ _("colour") }}{% endif %}{% if p.status == 'wip' %} · {{ _("work in progress") }}{% endif %}</span>
     </a>
     {% endfor %}
   </div>
   {% if specials %}
-  <div class="section-head" style="margin-top:64px"><h2>Special projects</h2><span class="count">{{ specials|length }}</span></div>
+  <div class="section-head" style="margin-top:64px"><h2>{{ _("Special projects") }}</h2><span class="count">{{ specials|length }}</span></div>
   <div class="pgrid">
     {% for p in specials %}
-    <a class="pcard" href="/projects/{{ p.slug }}/">
+    <a class="pcard" href="{{ pre }}/projects/{{ p.slug }}/">
       {{ img(p.cover, '(max-width:640px) 100vw, 360px') }}
       <span class="pcard-t">{{ p.title|redact }}</span>
       <span class="pcard-m">{{ p.subtitle }}{% if p.year %} · {{ p.year }}{% endif %}</span>

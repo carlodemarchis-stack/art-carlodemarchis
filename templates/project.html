@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block title %}{{ project.title|plain }} — {{ site.site_name }}{% endblock %}
 {% block desc %}{{ project.excerpt or (project.title|plain) }}{% endblock %}
-{% block canon %}{{ base }}/projects/{{ project.slug }}/{% endblock %}
+{% block canon %}{{ base }}{{ pre }}/projects/{{ project.slug }}/{% endblock %}
 {% block og %}{% if project.cover %}<meta property="og:image" content="{{ base }}{{ project.cover.og }}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="{{ (1200 * project.cover.h / project.cover.w)|round|int }}">{% endif %}{% endblock %}
 {% block content %}
 <article class="project {{ 'color' if project.palette == 'color' else 'bw' }}">
   <header class="phead">
     <div class="meta">
-      <a href="/projects/">Projects</a><span>{{ project.year }}</span>{% if project.kind == 'commission' %}<span class="pill">special project</span>{% else %}<span>{{ project.kind.replace('_', ' ') }}</span>{% endif %}
-      <span>{{ 'colour' if project.palette == 'color' else 'black & white' }}</span>
-      {% if project.status == 'wip' %}<span class="pill wip">work in progress</span>{% endif %}
+      <a href="{{ pre }}/projects/">{{ _("Projects") }}</a><span>{{ project.year }}</span>{% if project.kind == 'commission' %}<span class="pill">{{ _("special project") }}</span>{% else %}<span>{{ _(project.kind.replace('_', ' ')) }}</span>{% endif %}
+      <span>{{ _('colour') if project.palette == 'color' else _('black & white') }}</span>
+      {% if project.status == 'wip' %}<span class="pill wip">{{ _("work in progress") }}</span>{% endif %}
     </div>
     <h1 class="h-title">{{ project.title|redact }}</h1>
     {% if project.subtitle %}<p class="subtitle">{{ project.subtitle }}</p>{% endif %}
@@ -27,18 +27,18 @@
   {% if project.statement %}
   <div class="statement">{{ project.statement|md }}</div>
   {% elif project.status == 'wip' %}
-  <div class="statement"><p class="muted">Work in progress — statement to follow.</p></div>
+  <div class="statement"><p class="muted">{{ _("Work in progress — statement to follow.") }}</p></div>
   {% endif %}
 
   {% if site.prints_note and project.kind not in ('commission', 'installation') %}
-  <p class="prints">{{ site.prints_note }}{% if site.email %} <a href="mailto:{{ site.email }}?subject={{ project.title|plain|urlencode }}">Get in touch</a>{% endif %}</p>
+  <p class="prints">{{ site.prints_note }}{% if site.email %} <a href="mailto:{{ site.email }}?subject={{ project.title|plain|urlencode }}">{{ _("Get in touch") }}</a>{% endif %}</p>
   {% endif %}
 
   {% if project.links or project.books or project.events %}
   <aside class="plinks">
     {% for l in project.links %}<a class="btn" href="{{ l.url }}" rel="noopener">{{ l.label }} ↗</a>{% endfor %}
-    {% for b in project.books %}<a class="btn" href="/photobooks/#{{ b.slug }}">Photobook{% if b.status == 'coming' %} (coming soon){% endif %}</a>{% endfor %}
-    {% for e in project.events %}<a class="btn ghost" href="/exhibitions/#{{ e.slug }}">{{ e.title }} · {{ e.when }}</a>{% endfor %}
+    {% for b in project.books %}<a class="btn" href="{{ pre }}/photobooks/#{{ b.slug }}">{{ _('Photobook') }}{% if b.status == 'coming' %} ({{ _('coming soon') }}){% endif %}</a>{% endfor %}
+    {% for e in project.events %}<a class="btn ghost" href="{{ pre }}/exhibitions/#{{ e.slug }}">{{ e.title }} · {{ e.when }}</a>{% endfor %}
   </aside>
   {% endif %}
 
@@ -52,9 +52,9 @@
   </section>
   {% endif %}
 
-  <nav class="pnav" aria-label="More projects">
-    {% if prev %}<a class="pn prev" href="/projects/{{ prev.slug }}/"><span>Previous</span>{{ prev.title|redact }}</a>{% else %}<span></span>{% endif %}
-    {% if next %}<a class="pn next" href="/projects/{{ next.slug }}/"><span>Next</span>{{ next.title|redact }}</a>{% endif %}
+  <nav class="pnav" aria-label="{{ _("More projects") }}">
+    {% if prev %}<a class="pn prev" href="{{ pre }}/projects/{{ prev.slug }}/"><span>{{ _("Previous") }}</span>{{ prev.title|redact }}</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="pn next" href="{{ pre }}/projects/{{ next.slug }}/"><span>{{ _("Next") }}</span>{{ next.title|redact }}</a>{% endif %}
   </nav>
 </article>
 {% endblock %}

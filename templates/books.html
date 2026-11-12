@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Photobooks — {{ site.site_name }}{% endblock %}
-{% block canon %}{{ base }}/photobooks/{% endblock %}
+{% block title %}{{ _("Photobooks") }} — {{ site.site_name }}{% endblock %}
+{% block canon %}{{ base }}{{ pre }}/photobooks/{% endblock %}
 {% block content %}
 <section class="section">
-  <div class="section-head"><h1 class="h-page">Photobooks</h1><span class="count">{{ books|length }}</span></div>
-  <p class="lead">Each project becomes a book: the printed sequence is where the images are meant to be read, slowly, one page after the other.</p>
+  <div class="section-head"><h1 class="h-page">{{ _("Photobooks") }}</h1><span class="count">{{ books|length }}</span></div>
+  <p class="lead">{{ _("Each project becomes a book: the printed sequence is where the images are meant to be read, slowly, one page after the other.") }}</p>
   <div class="blist">
     {% for b in books %}
     <article class="book" id="{{ b.slug }}">
       <div class="book-cover">
-        {% if b.cover %}<a href="{{ b.cover.url }}" data-lightbox="book-{{ b.slug }}">{{ img(b.cover, '(max-width:700px) 100vw, 420px', (b.title|plain) ~ ' — cover') }}</a>{% endif %}
+        {% if b.cover %}<a href="{{ b.cover.url }}" data-lightbox="book-{{ b.slug }}">{{ img(b.cover, '(max-width:700px) 100vw, 420px', (b.title|plain) ~ ' — ' ~ _('cover')) }}</a>{% endif %}
       </div>
       <div class="book-text">
-        <div class="meta"><span>{{ b.year }}</span>{% if b.format %}<span>{{ b.format }}</span>{% endif %}{% if b.pages %}<span>{{ b.pages }} pages</span>{% endif %}{% if b.isbn %}<span>{{ b.isbn }}</span>{% endif %}</div>
+        <div class="meta"><span>{{ b.year }}</span>{% if b.format %}<span>{{ b.format }}</span>{% endif %}{% if b.pages %}<span>{{ b.pages }} {{ _('pages') }}</span>{% endif %}{% if b.isbn %}<span>{{ b.isbn }}</span>{% endif %}</div>
         <h2>{{ b.title|redact }}</h2>
         {% if b.subtitle %}<p class="subtitle">{{ b.subtitle }}</p>{% endif %}
         {% if b.description %}<div class="book-desc">{{ b.description|md }}</div>{% endif %}
         <div class="book-actions">
-          {% if b.status == 'available' and b.buy_url %}<a class="btn" href="{{ b.buy_url }}" rel="noopener">{{ b.buy_label or 'Buy' }} ↗</a>
-          {% elif b.status == 'coming' %}<span class="pill wip">coming soon</span>
-          {% elif b.status == 'sold_out' %}<span class="pill">sold out</span>
-          {% elif b.status == 'private' %}<span class="pill">private edition — not for sale</span>{% endif %}
-          {% if b.project %}<a class="btn ghost" href="/projects/{{ b.project.slug }}/">See the project</a>{% endif %}
+          {% if b.status == 'available' and b.buy_url %}<a class="btn" href="{{ b.buy_url }}" rel="noopener">{{ _(b.buy_label or 'Buy') }} ↗</a>
+          {% elif b.status == 'coming' %}<span class="pill wip">{{ _("coming soon") }}</span>
+          {% elif b.status == 'sold_out' %}<span class="pill">{{ _("sold out") }}</span>
+          {% elif b.status == 'private' %}<span class="pill">{{ _("private edition — not for sale") }}</span>{% endif %}
+          {% if b.project %}<a class="btn ghost" href="{{ pre }}/projects/{{ b.project.slug }}/">{{ _("See the project") }}</a>{% endif %}
         </div>
         {% if b.gallery|length > 1 %}
         <div class="book-pages">
